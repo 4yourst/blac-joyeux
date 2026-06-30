@@ -19,6 +19,8 @@
 </head>
 <body class="min-h-screen bg-bj-cream font-sans text-bj-ink antialiased">
 
+    @php($cartCount = app(\App\Services\Cart::class)->count())
+
     {{-- En-tête --}}
     <header class="sticky top-0 z-40 border-b border-bj-border/70 bg-bj-cream/90 backdrop-blur">
         <div class="mx-auto flex max-w-3xl items-center justify-between px-5 py-4">
@@ -26,12 +28,25 @@
                 <span class="font-display text-2xl font-semibold tracking-wide text-bj-navy">Blac Joyaux</span>
                 <span class="mt-0.5 text-[10px] font-medium uppercase tracking-[0.25em] text-bj-gold">Maroquinerie</span>
             </a>
-            <a href="#collection"
-               class="rounded-full border border-bj-navy/20 px-4 py-2 text-xs font-medium uppercase tracking-widest text-bj-navy transition hover:bg-bj-navy hover:text-bj-cream">
-                Collection
+            <a href="{{ route('cart.index') }}"
+               class="relative rounded-full border border-bj-navy/20 px-4 py-2 text-xs font-medium uppercase tracking-widest text-bj-navy transition hover:bg-bj-navy hover:text-bj-cream">
+                Panier
+                @if ($cartCount > 0)
+                    <span class="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-bj-gold px-1.5 text-[11px] font-semibold text-white">{{ $cartCount }}</span>
+                @endif
             </a>
         </div>
     </header>
+
+    {{-- Message flash --}}
+    @if (session('status'))
+        <div class="mx-auto mt-4 max-w-3xl px-5">
+            <div class="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                {{ session('status') }}
+            </div>
+        </div>
+    @endif
 
     <main>
         @yield('content')
@@ -50,6 +65,8 @@
             </p>
         </div>
     </footer>
+
+    @stack('scripts')
 
 </body>
 </html>

@@ -87,12 +87,31 @@
             <p class="mt-5 text-base leading-relaxed text-bj-ink/80">{{ $product->description }}</p>
         </header>
 
-        {{-- Appel à l'action (le panier sera câblé à l'étape suivante) --}}
+        {{-- Ajout au panier --}}
         <div class="mt-7">
-            <button type="button"
-                    class="inline-flex w-full items-center justify-center rounded-full bg-bj-navy px-7 py-4 text-sm font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft sm:w-auto">
-                Ajouter au panier
-            </button>
+            @if ($product->is_available)
+                <form action="{{ route('cart.add', $product) }}" method="POST"
+                      class="flex flex-col gap-3 sm:flex-row sm:items-center">
+                    @csrf
+                    <label class="flex items-center gap-3 rounded-full border border-bj-border bg-white px-4 py-2">
+                        <span class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Qté</span>
+                        <select name="quantity" class="bg-transparent text-sm font-medium text-bj-navy focus:outline-none">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </label>
+                    <button type="submit"
+                            class="inline-flex w-full items-center justify-center rounded-full bg-bj-navy px-7 py-4 text-sm font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft sm:w-auto">
+                        Ajouter au panier
+                    </button>
+                </form>
+            @else
+                <button type="button" disabled
+                        class="inline-flex w-full cursor-not-allowed items-center justify-center rounded-full bg-bj-sand px-7 py-4 text-sm font-medium uppercase tracking-widest text-bj-ink/50 sm:w-auto">
+                    Indisponible
+                </button>
+            @endif
         </div>
 
         {{-- Storytelling / héritage (doc §10.2) --}}
