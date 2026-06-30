@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
@@ -28,3 +29,10 @@ Route::get('/commande/{order}/confirmation', [CheckoutController::class, 'confir
 
 // Voie B — Redirection WhatsApp
 Route::post('/commande/{order}/whatsapp', [CheckoutController::class, 'whatsapp'])->name('checkout.whatsapp');
+
+// Espace d'administration — protégé par le middleware auth (doc §5.1)
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+require __DIR__.'/auth.php';
