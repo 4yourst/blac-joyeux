@@ -60,6 +60,10 @@
                 Maison de maroquinerie ivoirienne. La collection Joyau de Bla s'inspire de la poupée
                 de fécondité ashanti — l'héritage culturel au service d'une élégance accessible.
             </p>
+            <nav class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                <a href="{{ route('home') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Boutique</a>
+                <a href="{{ route('faq') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Questions fréquentes</a>
+            </nav>
             <p class="mt-8 text-xs uppercase tracking-widest text-bj-cream/50">
                 Abidjan, Côte d'Ivoire · {{ now()->year }}
             </p>
