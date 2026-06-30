@@ -1,0 +1,311 @@
+BLAC JOYAUX
+Documentation technique
+Prototype de plateforme e-commerce — parcours Social Commerce sous Laravel
+Auteur
+Diallo Zoumana
+Agence
+ACD — Adnal Charlemagne Diallo
+Version
+1.0
+Date
+Juin 2026
+Dépôt du code source
+github.com/4yourst/blac-joyeux
+Document pédagogique — projet Blac Joyaux / IFRAN
+Sommaire
+1. Présentation du projet	3
+1.1 Contexte et positionnement	3
+1.2 Enjeu et objectif du prototype	3
+1.3 Public cible	3
+1.4 Le choix des deux voies de conversion	3
+1.5 Fiche d'identité du projet	3
+2. Stack technique	4
+3. Architecture applicative	5
+4. Modélisation des données	7
+5. Stratégie de sécurité	8
+6. Guide d'installation et de déploiement	9
+7. Méthodologie de travail	10
+8. Outils utilisés	11
+9. Estimation du temps de travail	11
+10. Périmètre fonctionnel	12
+11. Cahier de recettage	13
+12. Annexes	14
+1. Présentation du projet
+1.1 Contexte et positionnement
+Blac Joyaux est une maison de maroquinerie ivoirienne qui se positionne sur le segment du luxe accessible. La marque conçoit des sacs à main associant un héritage culturel fort — la collection phare Joyau de Bla s'inspire de la poupée de fécondité ashanti — à une exigence d'élégance et à des prix maîtrisés, de 40 000 à 100 000 FCFA.
+Le présent projet s'inscrit dans une refonte globale de la marque, menée en agence : pendant que les pôles création et communication retravaillent l'identité visuelle, la stratégie sociale et la ligne éditoriale, ma mission en tant que développeur consiste à reconstruire le site web de la marque. L'objectif commun est de doter Blac Joyaux de bases solides et d'une image cohérente, capables de soutenir son ambition de croissance.
+1.2 Enjeu et objectif du prototype
+L'enjeu business est clair : Blac Joyaux dispose d'une audience sur les réseaux sociaux, mais peine à transformer cet intérêt en achats. L'analyse a fait ressortir un frein principal — un manque de confiance et d'information lorsque la cliente arrive en ligne.
+La réponse technique est un prototype e-commerce mobile-first, pensé pour convertir l'audience sociale grâce à un parcours d'achat propre, épuré et résolument premium. Chaque étape du tunnel est conçue pour rassurer : information produit complète, prix affichés clairement, délais de livraison explicites et moyens de paiement lisibles. Le parcours débouche sur deux modes de finalisation au choix de la cliente, dont une conversation directe avec la marque via WhatsApp.
+1.3 Public cible
+Le prototype s'adresse en priorité à de jeunes femmes cadres, urbaines et actives, âgées de 25 à 35 ans et résidant principalement à Abidjan et en Côte d'Ivoire. La diaspora n'est pas traitée à ce stade ; elle constitue une perspective d'évolution future.
+1.4 Le choix des deux voies de conversion
+Plutôt qu'un checkout unique, le parcours propose deux issues complémentaires en fin de tunnel :
+Le paiement Mobile Money simulé s'adresse à la cliente autonome, qui connaît son besoin et son adresse de livraison et souhaite régler rapidement (Wave, Orange Money, MTN, Moov).
+La redirection WhatsApp s'adresse à la cliente qui préfère un échange humain : conseil avant achat, précision sur une adresse difficile à localiser, paiement en espèces à la réception, ou simple besoin d'être rassurée.
+Ce choix répond directement au frein de confiance identifié. La conversation WhatsApp permet à la marque de mieux connaître sa cliente — localisation réelle, préférence de paiement, attentes — et d'entretenir la relation après-vente. Dans un contexte où une partie des clientes vivent dans des zones mal adressées et règlent volontiers à la livraison, cette voie humaine est un atout commercial autant qu'un facteur de réassurance.
+1.5 Fiche d'identité du projet
+Élément
+Détail
+Nom du projet
+Blac Joyaux — prototype e-commerce
+Agence
+ACD (Adnal Charlemagne Diallo)
+Auteur (développement)
+Diallo Zoumana
+Nature du livrable
+Prototype e-commerce orienté Social Commerce
+Framework
+Laravel (PHP)
+Environnement d'exécution
+Local (serveur de développement Laravel / XAMPP)
+Gestion de version
+Git — dépôt GitHub : github.com/4yourst/blac-joyeux
+Statut du document
+Document de conception (avant développement)
+2. Stack technique
+Le développement repose sur un socle Laravel, imposé par le cadre du projet, complété par des choix front-end et de stockage adaptés à un prototype développé par un seul développeur en environnement local.
+2.1 Back-end — Laravel (PHP)
+Laravel structure l'ensemble de l'application selon le modèle MVC (Modèle-Vue-Contrôleur), qui sépare nettement la logique métier de l'affichage. Ce framework a été retenu pour sa robustesse, ses mécanismes de sécurité intégrés (protection CSRF et XSS, requêtes préparées via l'ORM Eloquent) et sa rapidité de développement, qui permettent de construire un parcours e-commerce fiable sans réinventer les fondations.
+2.2 Front-end — Blade, Tailwind CSS et JavaScript
+L'interface est rendue côté serveur avec Blade, le moteur de templates natif de Laravel, qui s'intègre directement à la logique des contrôleurs. La mise en forme s'appuie sur Tailwind CSS, choisi pour sa capacité à produire rapidement un design mobile-first, propre et premium, fidèle au positionnement luxe accessible de la marque. Quelques interactions ciblées (gestion du panier, affichage dynamique du récapitulatif, déroulés de la FAQ) sont assurées par du JavaScript léger, sans recourir à un framework front lourd, inutile à l'échelle du prototype.
+2.3 Base de données — SQLite
+Le stockage est assuré par SQLite, particulièrement adapté à un prototype local : aucune installation de serveur de base de données n'est requise, la base se résume à un fichier unique, et Laravel le prend en charge nativement. Ce choix accélère le développement tout en restant évolutif : grâce à l'abstraction offerte par Eloquent, une migration ultérieure vers MySQL ou MariaDB — pertinente en cas de mise en production avec un trafic concurrent — ne nécessiterait qu'un changement de configuration, sans réécriture du code.
+2.4 Gestion de version
+L'intégralité du code source est versionnée avec Git et hébergée sur un dépôt distant GitHub (github.com/4yourst/blac-joyeux). GitHub assure ici le suivi des évolutions et la sauvegarde du code ; l'application, à ce stade de prototype, s'exécute en local et n'est pas déployée sur un serveur de production.
+2.5 Récapitulatif de la stack
+Couche
+Technologie
+Rôle
+Back-end
+Laravel (PHP)
+Architecture MVC, logique métier, sécurité native
+Moteur de templates
+Blade
+Rendu des pages côté serveur
+Mise en forme
+Tailwind CSS
+Design mobile-first, premium, responsive
+Interactivité
+JavaScript léger
+Panier, récapitulatif dynamique, FAQ
+Base de données
+SQLite
+Stockage local, sans serveur, évolutif
+Versioning
+Git + GitHub
+Suivi des évolutions et sauvegarde du code
+Exécution
+Serveur local Laravel / XAMPP
+Environnement de prototype
+3. Architecture applicative
+L'application suit le modèle MVC de Laravel. Cette section décrit le cheminement d'une requête, depuis la navigation de la cliente jusqu'à la finalisation de sa commande, qui peut emprunter deux voies de conversion.
+3.1 Principe général
+Le parcours repose sur le triptyque classique de Laravel : la Vue (templates Blade affichés sur l'interface mobile) reçoit les actions de la cliente ; les Routes et Contrôleurs interceptent ces actions et orchestrent la logique métier ; les Modèles (Eloquent) dialoguent avec la base de données SQLite pour lire et écrire les informations.
+3.2 Déroulé d'une requête
+Requête initiale — la cliente navigue sur l'interface mobile et déclenche une action, par exemple la consultation de la fiche d'un sac. La Vue transmet cette action au routeur.
+Traitement logique — la route concernée appelle le contrôleur approprié, qui interroge les Modèles pour récupérer les données nécessaires : caractéristiques du produit, prix, disponibilité, options de livraison.
+Réponse et affichage — le contrôleur reçoit les données, puis génère la Vue destinée à la cliente en y intégrant les éléments de réassurance.
+Constitution du panier — la cliente ajoute un ou plusieurs articles au panier, puis sélectionne son option de livraison. Le récapitulatif est calculé dynamiquement.
+Saisie des informations — sur la page de finalisation, la cliente renseigne ses coordonnées (nom, téléphone, adresse de livraison).
+Enregistrement de la commande — avant toute sortie, le système enregistre systématiquement la commande en base sous la forme d'une intention d'achat. Cette étape garantit qu'aucune demande n'est perdue, y compris lorsque la cliente choisit ensuite la voie WhatsApp.
+Choix de la voie de conversion — la cliente sélectionne alors son mode de finalisation parmi deux options.
+3.3 Les deux voies de conversion
+Voie A — Paiement Mobile Money (simulé). La cliente choisit son opérateur (Wave, Orange Money, MTN, Moov) et accède à un écran de paiement simulé : l'interface reproduit l'expérience d'un règlement Mobile Money sans déclencher de transaction réelle, conformément à la nature du prototype. La commande est marquée comme finalisée par paiement simulé, et une page de confirmation est présentée.
+Voie B — Redirection WhatsApp. La cliente clique sur « Finaliser sur WhatsApp ». Le système construit dynamiquement une URL au format wa.me/<numéro>?text=<récapitulatif encodé>, où le récapitulatif (modèle, prix, livraison, coordonnées) est pré-rempli automatiquement. La cliente bascule alors vers une conversation avec un assistant de la marque, qui prend en charge la finalisation de manière personnalisée.
+3.4 Logique de conception
+L'enregistrement de la commande en amont de la séparation des voies est un choix structurant : il transforme chaque parcours, abouti ou non, en donnée exploitable depuis l'espace d'administration. La marque dispose ainsi d'une vision complète des intentions d'achat, qu'elles se concluent par un paiement simulé ou par une conversation WhatsApp.
+Figure 1 — Flux applicatif du parcours d'achat et des deux voies de conversion
+4. Modélisation des données
+La base de données SQLite est structurée pour soutenir l'ensemble du tunnel d'achat, depuis le catalogue produit jusqu'à l'enregistrement des intentions de commande, tout en gérant les accès à l'espace d'administration. Les noms de tables suivent la convention Laravel : anglais, au pluriel.
+4.1 Les tables
+users — comptes d'administration, gérés nativement par Laravel. Réservée au back-office, elle n'intervient pas dans le parcours client.
+products — catalogue des sacs : nom, description, prix (FCFA), visuel et statut de disponibilité.
+delivery_options — options de livraison paramétrables : zone, délai (1 à 3 jours) et tarif.
+payment_methods — moyens de paiement proposés (Wave, Orange Money, MTN, Moov, espèces), avec un type permettant de distinguer leur nature simulée.
+orders — cœur du modèle : chaque enregistrement représente une intention d'achat, créée avant la séparation des voies. La table stocke les coordonnées de la cliente, les références vers la livraison et le paiement, le montant total, ainsi que deux champs de pilotage : conversion_channel et status.
+order_items — lignes de commande détaillant chaque produit retenu, sa quantité et son prix unitaire.
+4.2 Choix de conception notables
+conversion_channel : trace la voie empruntée par la cliente (mobile_money ou whatsapp). Permet à l'administration de mesurer la répartition entre paiement autonome et conversion conversationnelle.
+payment_method_id facultatif : en voie WhatsApp, le mode de paiement n'est pas toujours arrêté au moment de la bascule — il se confirme dans la conversation. Le champ est donc nullable, ce qui reflète fidèlement le parcours réel.
+Montants en FCFA : tous les prix sont exprimés en francs CFA, en cohérence avec la fourchette tarifaire de la marque.
+Statuts bornés : status et conversion_channel reposent sur des valeurs contrôlées (ENUM) plutôt que sur du texte libre, garantissant l'intégrité des données.
+4.3 Relations principales
+Une option de livraison concerne plusieurs commandes ; un moyen de paiement règle plusieurs commandes ; une commande contient plusieurs lignes de commande ; un produit figure dans plusieurs lignes de commande.
+Figure 2 — Schéma entité-association (ERD) de la base de données
+5. Stratégie de sécurité
+La sécurité repose principalement sur les mécanismes natifs de Laravel, complétés par de bonnes pratiques de gestion des accès. Le périmètre sensible de l'application est le back-office d'administration ; le parcours client, lui, ne requiert aucune authentification.
+5.1 Authentification et contrôle d'accès
+Périmètre : l'authentification concerne uniquement les administrateurs. La cliente navigue et commande de façon anonyme, puis finalise via Mobile Money ou WhatsApp — aucun compte client n'est créé.
+Mécanisme : le système d'authentification s'appuie sur Laravel Breeze, qui fournit les fonctionnalités de connexion de manière robuste et éprouvée.
+Comptes : plusieurs comptes administrateurs peuvent coexister ; ils partagent les mêmes droits. Aucune hiérarchie de rôles n'est mise en place à ce stade — elle constituerait une évolution ultérieure.
+Inscription publique désactivée : la création de compte n'est pas ouverte au public, afin d'éviter tout accès non autorisé au back-office.
+Protection des routes : l'ensemble des routes d'administration (/admin/*) est protégé par le middleware auth de Laravel.
+5.2 Gestion des mots de passe
+Hachage : aucun mot de passe n'est stocké en clair. Laravel applique nativement un hachage cryptographique (bcrypt) à chaque enregistrement.
+Règles de validation : la création d'un compte administrateur est soumise aux règles de validation natives de Laravel (longueur minimale, confirmation du mot de passe).
+5.3 Protection de la base de données
+Prévention des injections SQL : toutes les interactions passent par l'ORM Eloquent, qui utilise des requêtes préparées et neutralise ce risque par défaut.
+Confidentialité des accès : les paramètres de connexion sont définis dans le fichier .env, exclu du dépôt via .gitignore, et ne sont donc jamais publiés sur GitHub.
+5.4 Autres protections
+Protection CSRF : Laravel intègre une protection contre les attaques Cross-Site Request Forgery sur l'ensemble des formulaires.
+Protection XSS : le moteur Blade échappe automatiquement les données affichées, prévenant les injections de scripts.
+6. Guide d'installation et de déploiement
+Cette procédure permet à un développeur de mettre en place le prototype à partir du code source, en environnement local.
+6.1 Prérequis techniques
+PHP, version 8.2 ou supérieure
+Composer (gestionnaire de dépendances PHP)
+Node.js et NPM (compilation des ressources front-end)
+Git
+SQLite (intégré nativement à PHP, aucune installation de serveur séparé requise)
+6.2 Procédure d'installation
+Étape 1 — Récupération du code source. Cloner le dépôt officiel, puis se positionner dans le dossier du projet.
+git clone https://github.com/4yourst/blac-joyeux.git
+cd blac-joyeux
+Étape 2 — Installation des dépendances. Installer les bibliothèques PHP requises par Laravel, puis les paquets Node.
+composer install
+npm install
+Étape 3 — Configuration de l'environnement. Dupliquer le fichier d'exemple, puis générer la clé de sécurité unique.
+cp .env.example .env
+php artisan key:generate
+Étape 4 — Création de la base SQLite. Créer le fichier de base vide, puis indiquer à Laravel d'utiliser SQLite dans le fichier .env (DB_CONNECTION=sqlite). Les autres variables de base de données peuvent être supprimées ou laissées vides.
+touch database/database.sqlite
+Étape 5 — Migration et peuplement. Générer la structure de la base puis injecter un jeu de données de démonstration (modèles Joyau de Bla, délais de livraison).
+php artisan migrate --seed
+Étape 6 — Compilation des ressources front-end. Compiler les fichiers CSS et JavaScript (Tailwind).
+npm run build   # ou npm run dev en développement
+Étape 7 — Lancement du serveur local. Démarrer le serveur de développement intégré à Laravel.
+php artisan serve
+Le prototype est alors accessible depuis le navigateur, idéalement en vue mobile, à l'adresse http://localhost:8000.
+7. Méthodologie de travail
+7.1 Organisation en mode agence
+Le projet est mené en agence, selon une logique de chaîne de production. En tant que seul développeur, mon travail s'inscrit en aval des validations des autres pôles : j'intègre les maquettes produites par le pôle Création et les contenus rédigés par le pôle Communication, pour les transformer en parcours e-commerce fonctionnel.
+La coordination repose sur les points d'équipe réguliers de l'agence, qui permettent de synchroniser l'avancement entre les pôles, de remonter les blocages et de valider les éléments avant intégration. Cette articulation garantit que le développement reste cohérent avec la direction artistique et la stratégie de communication.
+7.2 Gestion du code source
+L'intégralité du code est versionnée avec Git et hébergée sur un dépôt distant GitHub, ce qui sécurise le travail et conserve l'historique complet des évolutions. Le développement étant mené par un seul développeur, le travail s'effectue sur une branche unique main, ce qui simplifie le flux sans nuire à la traçabilité.
+7.3 Convention de commits
+Les messages de commit sont rédigés en clair et de manière explicite, chacun commençant par un verbe à l'infinitif décrivant l'action réalisée (par exemple : « Ajouter le panier simulé », « Corriger l'affichage mobile de la fiche produit », « Créer la migration des produits »). Cette habitude assure un historique lisible et facilement exploitable.
+git add .
+git commit -m "Ajouter le panier simulé"
+git push
+7.4 Traçabilité du développement
+Le développement est mené de façon incrémentale : chaque fonctionnalité est construite et validée comme une étape distincte, suivie d'un commit dédié portant un message explicite. Cette approche produit un historique Git fidèle à la progression réelle du projet, facilement consultable et vérifiable.
+8. Outils utilisés
+8.1 Environnement de développement
+Laravel (PHP) : framework principal, imposé par le projet, structurant l'architecture MVC et la logique métier.
+Visual Studio Code : éditeur de code utilisé pour l'écriture de l'ensemble du projet.
+XAMPP : environnement local fournissant PHP, sur lequel s'exécute le serveur de développement Laravel.
+SQLite : base de données du prototype, légère et sans serveur dédié.
+Node.js et NPM : compilation des ressources front-end (Tailwind CSS et JavaScript).
+8.2 Conception et maquettage
+Figma : conception des wireframes et des maquettes de l'interface, en amont de l'intégration.
+8.3 Outils collaboratifs et de versioning
+Git et GitHub : versioning continu et hébergement du code source, garantissant la traçabilité du développement.
+Dossier partagé de l'agence : espace organisé par pôle pour la réception des maquettes (Création) et des contenus (Communication).
+9. Estimation du temps de travail
+L'estimation ci-dessous correspond à l'effort de développement en conditions normales, sur la base d'une journée de travail de 7 heures. Elle traduit la charge réelle qu'aurait représentée le projet codé manuellement, et sert de référence pour en mesurer l'ampleur.
+Phase
+Contenu
+Durée
+1. Conception et préparation
+Arborescence, wireframes et maquettes Figma, dépôt GitHub, installation Laravel
+2 j
+2. Développement back-end
+Migrations, modèles Eloquent, contrôleurs et routes
+2,5 j
+3. Espace d'administration
+Authentification Breeze, CRUD produits et livraisons, consultation commandes
+2 j
+4. Développement front-end
+Intégration mobile-first des vues Blade (Tailwind), accueil, fiches produits
+3 j
+5. E-commerce et double conversion
+Panier simulé, saisie client, enregistrement, paiement simulé, redirection WhatsApp
+3 j
+6. Recettage et documentation
+Cahier de tests, corrections, vérifications mobiles, documentation
+2 j
+Total estimé
+14,5 j
+Note sur la productivité réelle. Ce chiffrage reflète une estimation classique, à la main. Dans le cadre de ce projet, le développement est assisté par des outils d'IA, ce qui réduit considérablement le temps de réalisation effectif sans rien retirer à la rigueur de la conception. L'estimation conserve toute sa valeur : elle démontre la capacité à dimensionner un projet, tandis que le recours à ces outils illustre une démarche de productivité moderne. Le temps gagné est réinvesti dans la qualité — finitions de l'interface, tests, cohérence du parcours.
+10. Périmètre fonctionnel
+Pour répondre à la stratégie de Social Commerce et aux contraintes du projet, le prototype développé sous Laravel couvre l'ensemble des fonctionnalités suivantes.
+10.1 Interfaces et navigation
+Conception mobile-first : interfaces entièrement responsives, adaptées en priorité aux écrans de smartphone.
+Page d'accueil / vitrine : mise en avant de la collection capsule (2 à 3 modèles), avec un focus sur le sac de bureau.
+FAQ et réassurance : section regroupant les questions fréquentes, destinée à lever le frein de confiance.
+10.2 Fiches produits enrichies
+Caractéristiques complètes : prix (40 000 à 100 000 FCFA), dimensions, matières, usage, entretien, disponibilité.
+Storytelling : espace dédié à l'histoire du modèle et à son argumentaire, dans l'esprit héritage de la marque.
+SEO AI-First : emplacements prévus pour des données structurées (Product, Offer, FAQPage). La couche éditoriale est fournie par le pôle Communication et intégrée dans ces emplacements.
+10.3 Logique e-commerce
+Gestion du panier : ajout au panier générant une intention d'achat, sans mécanisme de précommande.
+Options de livraison : choix sélectionnables avec délais paramétrables (1 à 3 jours).
+Saisie des coordonnées : recueil du nom, du téléphone et de l'adresse de livraison.
+Enregistrement systématique de la commande : toute intention d'achat est enregistrée en base avant le choix de la voie de conversion.
+10.4 Double voie de conversion
+Voie A — Paiement Mobile Money simulé : sélection de l'opérateur (Wave, Orange Money, MTN, Moov), interface de paiement simulée, page de confirmation.
+Voie B — Redirection WhatsApp : redirection via une URL générée dynamiquement, avec message pré-rempli reprenant le récapitulatif de la commande.
+Complémentarité des voies : l'autonomie du paiement Mobile Money répond aux clientes décidées, tandis que la conversation WhatsApp adresse le besoin de réassurance.
+10.5 Espace d'administration
+Authentification sécurisée : accès réservé aux administrateurs via Laravel Breeze, protégé par le middleware auth.
+Gestion du catalogue : création, modification et suppression des produits.
+Gestion des livraisons : administration des options de livraison (zones, délais, tarifs).
+Consultation des commandes : visualisation des intentions d'achat enregistrées, avec leur voie de conversion.
+11. Cahier de recettage
+Le recettage vérifie la conformité de chaque fonctionnalité avec les exigences du parcours Social Commerce. Le projet étant en phase de conception, ce cahier constitue le plan de tests à exécuter au fur et à mesure du développement : chaque fonctionnalité sera testée puis validée à son achèvement.
+Fonctionnalité à tester
+Critère de validation
+État
+Affichage mobile-first
+Interfaces lisibles et utilisables sur smartphone
+À tester
+Page d'accueil / vitrine
+Affichage de la capsule, mise en avant du sac de bureau
+À tester
+Fiche produit enrichie
+Caractéristiques, prix, disponibilité et storytelling
+À tester
+Données structurées SEO
+Balises Product, Offer et FAQPage présentes
+À tester
+FAQ et réassurance
+Affichage des questions fréquentes
+À tester
+Ajout au panier
+Intention d'achat générée sans précommande
+À tester
+Options de livraison
+Sélection des délais paramétrables (1 à 3 jours)
+À tester
+Saisie des coordonnées
+Recueil et validation nom, téléphone, adresse
+À tester
+Enregistrement de la commande
+Intention enregistrée avant le choix de la voie
+À tester
+Voie A — Mobile Money simulé
+Sélection opérateur et page de confirmation
+À tester
+Voie B — Redirection WhatsApp
+URL wa.me avec récapitulatif pré-rempli
+À tester
+Admin — authentification
+Connexion sécurisée, blocage des accès non authentifiés
+À tester
+Admin — CRUD produits
+Création, modification et suppression d'un produit
+À tester
+Admin — gestion livraisons
+Administration des zones, délais et tarifs
+À tester
+Admin — consultation commandes
+Affichage des intentions avec leur voie
+À tester
+12. Annexes
+12.1 Architecture applicative
+Le flux applicatif du parcours d'achat, depuis la navigation jusqu'aux deux voies de conversion, est représenté en Figure 1 (section 3).
+12.2 Modélisation des données
+Le schéma entité-association (ERD) de la base de données, détaillant les tables et leurs relations, est représenté en Figure 2 (section 4).
+12.3 Wireframes et maquettes
+L'architecture des pages et les principes d'interface du prototype ont été conçus spécifiquement pour les objectifs de conversion du projet (voir section 10). La maquette définitive est réalisée sur Figma à partir de cette architecture, dans une logique mobile-first orientée expérience utilisateur et passage à l'action.
