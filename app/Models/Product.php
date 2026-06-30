@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -26,6 +27,14 @@ class Product extends Model
             'price' => 'integer',
             'is_available' => 'boolean',
         ];
+    }
+
+    /**
+     * Prix formaté pour l'affichage, en FCFA (ex. « 85 000 FCFA »).
+     */
+    protected function formattedPrice(): Attribute
+    {
+        return Attribute::get(fn () => number_format($this->price, 0, ',', ' ').' FCFA');
     }
 
     /**

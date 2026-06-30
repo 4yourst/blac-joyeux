@@ -6,6 +6,17 @@
 @source '../**/*.js';
 
 @theme {
+    /* Palette de marque Blac Joyaux — luxe accessible */
+    --color-bj-navy: #1f2a44;
+    --color-bj-navy-soft: #2b3a5c;
+    --color-bj-ink: #2c2c2a;
+    --color-bj-cream: #f5f3ec;
+    --color-bj-sand: #e8e4d8;
+    --color-bj-border: #d8d5cc;
+    --color-bj-gold: #b0894f;
+    --color-bj-gold-soft: #c9a96a;
+
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Cormorant Garamond', ui-serif, Georgia, 'Times New Roman', serif;
 }
