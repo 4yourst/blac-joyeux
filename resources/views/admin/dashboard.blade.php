@@ -57,8 +57,10 @@
                 </thead>
                 <tbody class="divide-y divide-bj-border">
                     @foreach ($recentOrders as $order)
-                        <tr>
-                            <td class="px-4 py-3 font-medium text-bj-navy">#{{ $order->id }}</td>
+                        <tr class="transition hover:bg-bj-cream/50">
+                            <td class="px-4 py-3 font-medium text-bj-navy">
+                                <a href="{{ route('admin.orders.show', $order) }}" class="transition hover:text-bj-gold">#{{ $order->id }}</a>
+                            </td>
                             <td class="px-4 py-3 text-bj-ink/80">{{ $order->customer_name }}</td>
                             <td class="px-4 py-3">
                                 @include('admin.partials.channel-badge', ['order' => $order])
