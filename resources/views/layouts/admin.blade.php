@@ -53,12 +53,20 @@
         </nav>
     </header>
 
-    {{-- Message flash --}}
+    {{-- Messages flash --}}
     @if (session('status'))
         <div class="mx-auto mt-4 max-w-5xl px-5">
             <div class="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
                 <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
                 {{ session('status') }}
+            </div>
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="mx-auto mt-4 max-w-5xl px-5">
+            <div class="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                {{ session('error') }}
             </div>
         </div>
     @endif
