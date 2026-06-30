@@ -39,18 +39,29 @@
             </div>
         </div>
 
-        {{-- Les deux voies de conversion (câblage à l'étape suivante, doc §10.4) --}}
+        {{-- Les deux voies de conversion (doc §10.4) --}}
         <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div class="rounded-2xl border border-bj-border bg-white p-6 text-center opacity-70">
+            {{-- Voie A — Paiement Mobile Money simulé --}}
+            <a href="{{ route('checkout.payment', $order) }}"
+               class="group flex flex-col rounded-2xl border border-bj-border bg-white p-6 text-center transition hover:border-bj-navy hover:shadow-md">
                 <p class="font-display text-xl font-semibold text-bj-navy">Paiement Mobile Money</p>
                 <p class="mt-2 text-xs text-bj-ink/60">Wave, Orange Money, MTN, Moov</p>
-                <span class="mt-4 inline-flex rounded-full bg-bj-sand px-4 py-2 text-[11px] uppercase tracking-widest text-bj-ink/50">Bientôt disponible</span>
-            </div>
-            <div class="rounded-2xl border border-bj-border bg-white p-6 text-center opacity-70">
+                <span class="mt-4 inline-flex justify-center rounded-full bg-bj-navy px-5 py-3 text-[11px] font-medium uppercase tracking-widest text-bj-cream transition group-hover:bg-bj-navy-soft">
+                    Payer maintenant
+                </span>
+            </a>
+
+            {{-- Voie B — Redirection WhatsApp --}}
+            <form action="{{ route('checkout.whatsapp', $order) }}" method="POST"
+                  class="flex flex-col rounded-2xl border border-bj-border bg-white p-6 text-center transition hover:border-emerald-500 hover:shadow-md">
+                @csrf
                 <p class="font-display text-xl font-semibold text-bj-navy">Finaliser sur WhatsApp</p>
                 <p class="mt-2 text-xs text-bj-ink/60">Échange direct avec la marque</p>
-                <span class="mt-4 inline-flex rounded-full bg-bj-sand px-4 py-2 text-[11px] uppercase tracking-widest text-bj-ink/50">Bientôt disponible</span>
-            </div>
+                <button type="submit"
+                        class="mt-4 inline-flex justify-center rounded-full bg-emerald-600 px-5 py-3 text-[11px] font-medium uppercase tracking-widest text-white transition hover:bg-emerald-700">
+                    Continuer sur WhatsApp
+                </button>
+            </form>
         </div>
     </section>
 

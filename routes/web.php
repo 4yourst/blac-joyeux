@@ -20,3 +20,11 @@ Route::delete('/panier/{product}', [CartController::class, 'remove'])->name('car
 Route::get('/commande', [CheckoutController::class, 'create'])->name('checkout.create');
 Route::post('/commande', [CheckoutController::class, 'store'])->name('checkout.store');
 Route::get('/commande/{order}/finalisation', [CheckoutController::class, 'conversion'])->name('checkout.conversion');
+
+// Voie A — Paiement Mobile Money simulé
+Route::get('/commande/{order}/paiement', [CheckoutController::class, 'paymentCreate'])->name('checkout.payment');
+Route::post('/commande/{order}/paiement', [CheckoutController::class, 'paymentStore'])->name('checkout.payment.store');
+Route::get('/commande/{order}/confirmation', [CheckoutController::class, 'confirmation'])->name('checkout.confirmation');
+
+// Voie B — Redirection WhatsApp
+Route::post('/commande/{order}/whatsapp', [CheckoutController::class, 'whatsapp'])->name('checkout.whatsapp');
