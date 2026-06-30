@@ -38,9 +38,10 @@
                         <h2 class="mt-2 font-display text-2xl font-semibold text-bj-navy">{{ $featured->name }}</h2>
                         <p class="mt-3 text-sm leading-relaxed text-bj-ink/70">{{ $featured->description }}</p>
                         <p class="mt-5 text-lg font-semibold text-bj-gold">{{ $featured->formatted_price }}</p>
-                        <span class="mt-6 inline-flex w-fit items-center rounded-full bg-bj-navy px-6 py-3 text-xs font-medium uppercase tracking-widest text-bj-cream">
+                        <a href="{{ route('products.show', $featured) }}"
+                           class="mt-6 inline-flex w-fit items-center rounded-full bg-bj-navy px-6 py-3 text-xs font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">
                             Découvrir
-                        </span>
+                        </a>
                     </div>
                 </div>
             </div>

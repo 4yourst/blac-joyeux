@@ -3,7 +3,8 @@
     $imagePath = $product->image ? public_path('images/'.$product->image) : null;
     $hasImage = $imagePath && file_exists($imagePath);
 @endphp
-<article class="group overflow-hidden rounded-2xl border border-bj-border bg-white shadow-sm transition hover:shadow-md">
+<a href="{{ route('products.show', $product) }}"
+   class="group block overflow-hidden rounded-2xl border border-bj-border bg-white shadow-sm transition hover:shadow-md">
     <div class="relative aspect-[4/5] overflow-hidden bg-bj-sand">
         @if ($hasImage)
             <img src="{{ asset('images/'.$product->image) }}" alt="{{ $product->name }}"
@@ -21,4 +22,4 @@
         <p class="mt-2 line-clamp-2 text-sm text-bj-ink/70">{{ $product->description }}</p>
         <p class="mt-4 text-sm font-semibold tracking-wide text-bj-gold">{{ $product->formatted_price }}</p>
     </div>
-</article>
+</a>

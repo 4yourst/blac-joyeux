@@ -30,6 +30,14 @@ class Product extends Model
     }
 
     /**
+     * Utilise le slug pour les URLs (route model binding).
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    /**
      * Prix formaté pour l'affichage, en FCFA (ex. « 85 000 FCFA »).
      */
     protected function formattedPrice(): Attribute
