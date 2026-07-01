@@ -22,15 +22,8 @@
                     <div class="flex items-center gap-4 rounded-2xl border border-bj-border bg-white p-4">
                         {{-- Vignette --}}
                         <a href="{{ route('products.show', $product) }}" class="shrink-0">
-                            @php($hasImage = $product->image && file_exists(public_path('images/'.$product->image)))
-                            <div class="h-20 w-20 overflow-hidden rounded-xl bg-bj-sand">
-                                @if ($hasImage)
-                                    <img src="{{ asset('images/'.$product->image) }}" alt="{{ $product->name }}" class="h-full w-full object-cover">
-                                @else
-                                    <div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-bj-navy to-bj-navy-soft">
-                                        <span class="font-display text-lg font-semibold text-bj-cream">BJ</span>
-                                    </div>
-                                @endif
+                            <div class="h-20 w-20 overflow-hidden rounded-xl">
+                                <x-product-image :product="$product" size="thumbnail" />
                             </div>
                         </a>
 

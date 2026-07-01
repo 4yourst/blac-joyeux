@@ -18,20 +18,8 @@
         @if ($featured)
             <div class="mt-10 overflow-hidden rounded-3xl border border-bj-border bg-white shadow-sm">
                 <div class="grid sm:grid-cols-2">
-                    <div class="relative aspect-square sm:aspect-auto">
-                        @php
-                            $heroImage = $featured->image ? public_path('images/'.$featured->image) : null;
-                            $heroHasImage = $heroImage && file_exists($heroImage);
-                        @endphp
-                        @if ($heroHasImage)
-                            <img src="{{ asset('images/'.$featured->image) }}" alt="{{ $featured->name }}"
-                                 class="h-full w-full object-cover">
-                        @else
-                            <div class="flex h-full min-h-64 w-full flex-col items-center justify-center bg-gradient-to-br from-bj-navy to-bj-navy-soft text-bj-cream">
-                                <span class="font-display text-6xl font-semibold">BJ</span>
-                                <span class="mt-2 text-[10px] uppercase tracking-[0.3em] text-bj-gold-soft">Pièce phare</span>
-                            </div>
-                        @endif
+                    <div class="relative aspect-square sm:aspect-auto sm:min-h-64">
+                        <x-product-image :product="$featured" size="hero" :eager="true" />
                     </div>
                     <div class="flex flex-col justify-center p-7">
                         <p class="text-[11px] font-medium uppercase tracking-[0.25em] text-bj-gold">Pièce phare</p>

@@ -68,7 +68,9 @@
                 <label for="image" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Visuel</label>
                 @if ($product->image && file_exists(public_path('images/'.$product->image)))
                     <div class="mt-2 flex items-center gap-3">
-                        <img src="{{ asset('images/'.$product->image) }}" alt="" class="h-16 w-16 rounded-lg object-cover">
+                        <div class="h-16 w-16 overflow-hidden rounded-lg">
+                            <x-product-image :product="$product" size="thumbnail" />
+                        </div>
                         <span class="text-xs text-bj-ink/50">Visuel actuel — téléversez un fichier pour le remplacer.</span>
                     </div>
                 @endif

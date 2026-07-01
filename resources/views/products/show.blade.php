@@ -50,19 +50,8 @@
 
         {{-- Visuel --}}
         <div class="overflow-hidden rounded-3xl border border-bj-border bg-bj-sand">
-            @php
-                $hasImage = $product->image && file_exists(public_path('images/'.$product->image));
-            @endphp
-            <div class="relative aspect-[4/5] sm:aspect-[16/10]">
-                @if ($hasImage)
-                    <img src="{{ asset('images/'.$product->image) }}" alt="{{ $product->name }}"
-                         class="h-full w-full object-cover">
-                @else
-                    <div class="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-bj-navy to-bj-navy-soft text-bj-cream">
-                        <span class="font-display text-7xl font-semibold">BJ</span>
-                        <span class="mt-2 text-[10px] uppercase tracking-[0.3em] text-bj-gold-soft">Joyau de Bla</span>
-                    </div>
-                @endif
+            <div class="aspect-[4/5] sm:aspect-[16/10]">
+                <x-product-image :product="$product" size="hero" :eager="true" />
             </div>
         </div>
 

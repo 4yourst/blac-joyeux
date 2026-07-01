@@ -33,12 +33,8 @@
                         <tr>
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
-                                    <div class="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-bj-sand">
-                                        @if ($product->image && file_exists(public_path('images/'.$product->image)))
-                                            <img src="{{ asset('images/'.$product->image) }}" alt="" class="h-full w-full object-cover">
-                                        @else
-                                            <div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-bj-navy to-bj-navy-soft text-xs font-semibold text-bj-cream">BJ</div>
-                                        @endif
+                                    <div class="h-12 w-12 shrink-0 overflow-hidden rounded-lg">
+                                        <x-product-image :product="$product" size="thumbnail" />
                                     </div>
                                     <div class="min-w-0">
                                         <p class="font-medium text-bj-navy">{{ $product->name }}</p>
