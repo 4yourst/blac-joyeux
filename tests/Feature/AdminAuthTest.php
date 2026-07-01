@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -55,7 +54,9 @@ class AdminAuthTest extends TestCase
         $this->post(route('login'), [
             'email' => 'admin@blacjoyaux.ci',
             'password' => 'mauvais-mot-de-passe',
-        ])->assertSessionHasErrors('email');
+        ])->assertSessionHasErrors([
+            'email' => 'Ces identifiants ne correspondent à aucun compte.',
+        ]);
 
         $this->assertGuest();
     }
