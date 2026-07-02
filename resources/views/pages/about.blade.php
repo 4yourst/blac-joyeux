@@ -18,7 +18,7 @@
 
     {{-- Visuel d'ouverture --}}
     <section class="mx-auto mt-10 max-w-5xl px-5">
-        <x-lifestyle-image ratio="aspect-[16/9]" label="Photo lifestyle — Blac Joyaux" :eager="true" />
+        <x-lifestyle-image ratio="aspect-[16/9]" label="Photo lifestyle — Blac Joyaux" image="images/site/about-opening.jpg" :eager="true" />
     </section>
 
     {{-- La fondatrice --}}
@@ -59,7 +59,7 @@
                     Un bijou du quotidien, à transmettre.
                 </p>
             </div>
-            <x-lifestyle-image ratio="aspect-[4/5]" label="Ambiance — Joyau de Bla" rounded="rounded-3xl" class="ring-1 ring-white/10" />
+            <x-lifestyle-image ratio="aspect-[4/5]" label="Ambiance — Joyau de Bla" image="images/site/about-ambiance.jpg" rounded="rounded-3xl" class="ring-1 ring-white/10" />
         </div>
     </section>
 

@@ -3,22 +3,8 @@
 @section('title', 'Blac Joyaux — Maroquinerie ivoirienne | Collection Joyau de Bla')
 
 @php
-    // Helper images (placeholders libres de droits Unsplash — à remplacer par les visuels de la créa).
-    $ux = fn (string $id, int $w = 1200, ?int $h = null) =>
-        'https://images.unsplash.com/photo-'.$id.'?auto=format&fit=crop&q=80&w='.$w.($h ? '&h='.$h : '');
-
-    $heroImg = '1490481651871-ab68de25d43d';
-    $featuredImg = '1566150905458-1bf1fc113f0d';
-    $heritageImg = '1512201078372-9c6b2a0d528a';
-    $gridImgs = [
-        '1584917865442-de89df76afd3',
-        '1566150905458-1bf1fc113f0d',
-        '1548036328-c9fa89d128fa',
-        '1591561954557-26941169b49e',
-        '1571945153237-4929e783af4a',
-        '1553062407-98eeb64c6a62',
-    ];
-
+    // Photos placeholder libres de droits (Unsplash), stockées en local dans public/images/site.
+    // À remplacer par les visuels définitifs de la créa.
     $allProducts = collect([$featured])->filter()->merge($others);
 @endphp
 
@@ -26,9 +12,9 @@
 
     {{-- ========================= HERO PLEINE LARGEUR ========================= --}}
     <section class="relative isolate flex min-h-[78vh] items-center overflow-hidden">
-        <img src="{{ $ux($heroImg, 1600) }}" alt="Élégance Blac Joyaux" fetchpriority="high"
+        <img src="{{ asset('images/site/hero.jpg') }}" alt="Sac à main Blac Joyaux" fetchpriority="high"
              class="absolute inset-0 -z-10 h-full w-full object-cover object-center">
-        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-bj-navy/85 via-bj-navy/55 to-bj-navy/20"></div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-bj-navy/85 via-bj-navy/55 to-bj-navy/25"></div>
 
         <div class="mx-auto w-full max-w-5xl px-6 py-24">
             <div class="max-w-xl text-bj-cream">
@@ -77,12 +63,11 @@
         </div>
 
         <div class="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-3">
-            @foreach ($allProducts as $i => $product)
+            @foreach ($allProducts as $product)
                 <a href="{{ route('products.show', $product) }}" class="group block">
-                    <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-bj-sand">
-                        <img src="{{ $ux($gridImgs[$i % count($gridImgs)], 700) }}" alt="{{ $product->name }}" loading="lazy"
-                             class="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04]">
-                        <span class="absolute left-3 top-3 rounded-full bg-bj-cream/90 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-bj-navy">
+                    <div class="relative aspect-[4/5] overflow-hidden rounded-2xl">
+                        <x-product-image :product="$product" size="card" />
+                        <span class="absolute left-3 top-3 z-10 rounded-full bg-bj-cream/90 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-bj-navy">
                             Joyau de Bla
                         </span>
                     </div>
@@ -100,8 +85,7 @@
         <section class="mx-auto mt-24 max-w-6xl px-6">
             <div class="grid items-stretch overflow-hidden rounded-3xl border border-bj-border bg-white shadow-sm lg:grid-cols-2">
                 <div class="relative min-h-72 lg:min-h-[32rem]">
-                    <img src="{{ $ux($featuredImg, 1000) }}" alt="{{ $featured->name }}" loading="lazy"
-                         class="absolute inset-0 h-full w-full object-cover">
+                    <x-product-image :product="$featured" size="hero" />
                 </div>
                 <div class="flex flex-col justify-center p-10 sm:p-14">
                     <p class="text-[11px] font-medium uppercase tracking-[0.3em] text-bj-gold">Pièce phare</p>
@@ -121,7 +105,7 @@
     <section class="mt-24 bg-bj-navy text-bj-cream">
         <div class="mx-auto grid max-w-6xl items-center gap-0 lg:grid-cols-2">
             <div class="relative min-h-72 lg:min-h-[34rem]">
-                <img src="{{ $ux($heritageImg, 1000) }}" alt="Savoir-faire Blac Joyaux" loading="lazy"
+                <img src="{{ asset('images/site/heritage.jpg') }}" alt="Savoir-faire maroquinier Blac Joyaux" loading="lazy"
                      class="absolute inset-0 h-full w-full object-cover">
             </div>
             <div class="px-6 py-16 sm:px-12 lg:py-20">
