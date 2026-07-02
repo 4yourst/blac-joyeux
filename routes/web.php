@@ -23,6 +23,8 @@ Route::get('/notre-histoire', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'contactStore'])->name('contact.send');
 
+Route::get('/livraison-et-paiement', [PageController::class, 'shipping'])->name('shipping');
+
 // Panier
 Route::get('/panier', [CartController::class, 'index'])->name('cart.index');
 Route::post('/panier/ajouter/{product}', [CartController::class, 'add'])->name('cart.add');
