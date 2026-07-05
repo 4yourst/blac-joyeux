@@ -30,6 +30,8 @@ class AdminCrudTest extends TestCase
         // Création (slug auto-généré)
         $this->post(route('admin.products.store'), [
             'name' => 'Sac Test Recette',
+            'type' => 'bureau',
+            'collection' => 'Joyau de Bla',
             'price' => 55000,
             'description' => 'Un sac de test.',
             'is_available' => 1,
@@ -43,6 +45,8 @@ class AdminCrudTest extends TestCase
         $this->patch(route('admin.products.update', $product), [
             'name' => 'Sac Test Recette',
             'slug' => $product->slug,
+            'type' => 'bureau',
+            'collection' => 'Joyau de Bla',
             'price' => 60000,
             'description' => 'Un sac de test mis à jour.',
             'is_available' => 1,

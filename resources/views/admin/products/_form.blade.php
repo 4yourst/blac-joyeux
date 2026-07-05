@@ -29,6 +29,30 @@
                 @error('price') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
+            <div>
+                <label for="type" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Type *</label>
+                <select id="type" name="type" required
+                        class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
+                    <option value="" disabled @selected(! old('type', $product->type))>Choisir un type…</option>
+                    @foreach (config('blacjoyaux.product_types') as $typeOption)
+                        <option value="{{ $typeOption }}" @selected(old('type', $product->type) === $typeOption)>{{ ucfirst($typeOption) }}</option>
+                    @endforeach
+                </select>
+                @error('type') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+            </div>
+
+            <div>
+                <label for="collection" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Collection *</label>
+                <select id="collection" name="collection" required
+                        class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
+                    <option value="" disabled @selected(! old('collection', $product->collection))>Choisir une collection…</option>
+                    @foreach (config('blacjoyaux.collections') as $collectionOption)
+                        <option value="{{ $collectionOption }}" @selected(old('collection', $product->collection) === $collectionOption)>{{ $collectionOption }}</option>
+                    @endforeach
+                </select>
+                @error('collection') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+            </div>
+
             <div class="sm:col-span-2">
                 <label for="description" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Description *</label>
                 <textarea id="description" name="description" rows="3" required

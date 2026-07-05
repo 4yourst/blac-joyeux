@@ -83,6 +83,8 @@ class ProductController extends Controller
                 'nullable', 'string', 'max:140', 'alpha_dash',
                 Rule::unique('products', 'slug')->ignore($product),
             ],
+            'type' => ['required', Rule::in(config('blacjoyaux.product_types'))],
+            'collection' => ['required', Rule::in(config('blacjoyaux.collections'))],
             'price' => ['required', 'integer', 'min:0', 'max:100000000'],
             'description' => ['required', 'string'],
             'story' => ['nullable', 'string'],

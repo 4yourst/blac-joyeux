@@ -14,4 +14,19 @@ return [
 
     'whatsapp_number' => env('BLAC_WHATSAPP_NUMBER', '2250700000000'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Types de sacs et collections (valeurs contrôlées)
+    |--------------------------------------------------------------------------
+    |
+    | Source unique de vérité pour le champ « type » et le champ « collection »
+    | des produits. Utilisée par le formulaire admin (select), la validation
+    | (Rule::in) et les filtres de la page Collection.
+    |
+    */
+
+    'product_types' => ['bureau', 'cabas', 'pochette', 'soirée', 'tote'],
+
+    'collections' => ['Joyau de Bla', 'Collection DO'],
+
 ];
