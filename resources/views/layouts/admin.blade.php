@@ -15,7 +15,7 @@
 <body class="min-h-screen bg-bj-cream font-sans text-bj-ink antialiased">
 
     {{-- Barre d'administration --}}
-    <header class="sticky top-0 z-30 border-b border-bj-border bg-bj-navy text-bj-cream shadow-sm">
+    <header class="border-b border-bj-border bg-bj-navy text-bj-cream shadow-sm">
         <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
             <a href="{{ route('admin.dashboard') }}" class="flex flex-col leading-none">
                 <span class="font-display text-xl font-semibold tracking-wide">Blac Joyaux</span>
