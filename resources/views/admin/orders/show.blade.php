@@ -57,6 +57,12 @@
                         <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Téléphone</dt>
                         <dd class="mt-0.5 text-bj-navy">{{ $order->customer_phone }}</dd>
                     </div>
+                    @if ($order->customer_email)
+                        <div>
+                            <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">E-mail</dt>
+                            <dd class="mt-0.5 text-bj-navy">{{ $order->customer_email }}</dd>
+                        </div>
+                    @endif
                     <div>
                         <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Adresse de livraison</dt>
                         <dd class="mt-0.5 text-bj-navy">{{ $order->customer_address }}</dd>

@@ -64,6 +64,30 @@ class CheckoutTest extends TestCase
         $this->assertDatabaseCount('orders', 0);
     }
 
+    /** L'e-mail est facultatif ; un format invalide est rejeté, un format valide est stocké. */
+    public function test_l_email_est_facultatif_et_valide(): void
+    {
+        $product = Product::where('slug', 'joyau-de-bla-sac-de-bureau')->first();
+        $delivery = DeliveryOption::orderBy('price')->first();
+        $base = [
+            'customer_name' => 'Awa Koné',
+            'customer_phone' => '+225 0700000000',
+            'customer_address' => 'Cocody, Abidjan',
+            'delivery_option_id' => $delivery->id,
+        ];
+
+        // E-mail invalide -> rejeté.
+        $this->post(route('cart.add', $product), ['quantity' => 1]);
+        $this->post(route('checkout.store'), $base + ['customer_email' => 'pas-un-email'])
+            ->assertSessionHasErrors('customer_email');
+        $this->assertDatabaseCount('orders', 0);
+
+        // E-mail valide -> enregistré.
+        $this->post(route('checkout.store'), $base + ['customer_email' => 'awa@example.com'])
+            ->assertRedirect();
+        $this->assertSame('awa@example.com', Order::latest()->first()->customer_email);
+    }
+
     /** Critère 9 — La commande est enregistrée comme intention AVANT le choix de la voie. */
     public function test_la_commande_est_enregistree_avant_le_choix_de_la_voie(): void
     {

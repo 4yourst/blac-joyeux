@@ -45,6 +45,7 @@ class CheckoutController extends Controller
         $validated = $request->validate([
             'customer_name' => ['required', 'string', 'max:120'],
             'customer_phone' => ['required', 'string', 'max:30'],
+            'customer_email' => ['nullable', 'email', 'max:190'],
             'customer_address' => ['required', 'string', 'max:500'],
             'delivery_option_id' => ['required', 'exists:delivery_options,id'],
         ]);
@@ -58,6 +59,7 @@ class CheckoutController extends Controller
             $order = Order::create([
                 'customer_name' => $validated['customer_name'],
                 'customer_phone' => $validated['customer_phone'],
+                'customer_email' => $validated['customer_email'] ?? null,
                 'customer_address' => $validated['customer_address'],
                 'delivery_option_id' => $deliveryOption->id,
                 'payment_method_id' => null,        // Défini plus tard (voie Mobile Money), nullable (doc §4.2)

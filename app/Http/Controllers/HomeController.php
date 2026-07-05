@@ -20,12 +20,13 @@ class HomeController extends Controller
         $others = $products->reject(fn ($product) => $featured && $product->is($featured));
 
         // Sélection curated de coups de cœur (ordre privilégié), complétée si besoin.
-        $curated = ['joyau-de-bla-tote-ashanti', 'collection-do-cartable-executif', 'joyau-de-bla-pochette'];
+        // Nombre pair (4) pour remplir la grille 2 colonnes sur mobile.
+        $curated = ['joyau-de-bla-tote-ashanti', 'collection-do-cartable-executif', 'joyau-de-bla-pochette', 'joyau-de-bla-soiree-eclat'];
 
         $highlights = $others->whereIn('slug', $curated)
             ->merge($others->whereNotIn('slug', $curated))
             ->unique('id')
-            ->take(3)
+            ->take(4)
             ->values();
 
         return view('home', compact('featured', 'highlights'));

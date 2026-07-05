@@ -78,7 +78,7 @@
             </p>
         </div>
 
-        <div class="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-3">
+        <div class="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-4">
             @foreach ($highlights as $product)
                 @include('partials.collection-card', ['product' => $product])
             @endforeach

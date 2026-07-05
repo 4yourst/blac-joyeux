@@ -84,6 +84,15 @@
                         @error('customer_phone') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                     </div>
                     <div>
+                        <label for="customer_email" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">
+                            E-mail <span class="normal-case tracking-normal text-bj-ink/50">(facultatif — pour recevoir la confirmation de commande)</span>
+                        </label>
+                        <input type="email" id="customer_email" name="customer_email" value="{{ old('customer_email') }}"
+                               placeholder="vous@exemple.com"
+                               class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
+                        @error('customer_email') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    </div>
+                    <div>
                         <label for="customer_address" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Adresse de livraison</label>
                         <textarea id="customer_address" name="customer_address" rows="3" required
                                   class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">{{ old('customer_address') }}</textarea>
