@@ -50,6 +50,14 @@
             </nav>
 
             <div class="flex items-center gap-2">
+                {{-- Bouton recherche (toutes les pages) --}}
+                <button type="button" id="searchToggle" aria-label="Rechercher" aria-expanded="false" aria-controls="searchPanel"
+                        class="rounded-full border border-bj-navy/20 p-2.5 text-bj-navy transition hover:bg-bj-navy hover:text-bj-cream">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.3-4.3m1.8-4.45a6.25 6.25 0 1 1-12.5 0 6.25 6.25 0 0 1 12.5 0Z" />
+                    </svg>
+                </button>
+
                 <a href="{{ route('cart.index') }}"
                    class="relative rounded-full border border-bj-navy/20 px-4 py-2 text-xs font-medium uppercase tracking-widest text-bj-navy transition hover:bg-bj-navy hover:text-bj-cream">
                     Panier
@@ -78,6 +86,23 @@
                     </a>
                 @endforeach
             </nav>
+        </div>
+
+        {{-- Panneau de recherche (renvoie vers la page Collection) --}}
+        <div id="searchPanel" class="hidden border-t border-bj-border/70 bg-bj-cream">
+            <form method="GET" action="{{ route('collection') }}" class="mx-auto max-w-6xl px-5 py-4">
+                <div class="relative">
+                    <svg class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-bj-ink/40" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-4.3-4.3m1.8-4.45a6.25 6.25 0 1 1-12.5 0 6.25 6.25 0 0 1 12.5 0Z" />
+                    </svg>
+                    <input type="search" name="q" value="{{ request('q') }}" placeholder="Rechercher un sac…" autocomplete="off"
+                           class="w-full rounded-full border border-bj-border bg-white py-3 pl-11 pr-28 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
+                    <button type="submit"
+                            class="absolute right-1.5 top-1/2 -translate-y-1/2 rounded-full bg-bj-navy px-5 py-2 text-xs font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">
+                        Rechercher
+                    </button>
+                </div>
+            </form>
         </div>
     </header>
 
@@ -175,15 +200,23 @@
         <span class="sr-only">Écrire sur WhatsApp</span>
     </a>
 
-    {{-- Bascule du menu mobile --}}
+    {{-- Bascule du menu mobile et du panneau de recherche --}}
     <script>
         (function () {
-            const toggle = document.getElementById('menuToggle');
-            const menu = document.getElementById('mobileMenu');
-            if (!toggle || !menu) return;
-            toggle.addEventListener('click', function () {
-                const hidden = menu.classList.toggle('hidden');
-                toggle.setAttribute('aria-expanded', String(!hidden));
+            function bind(btnId, panelId, onOpen) {
+                const btn = document.getElementById(btnId);
+                const panel = document.getElementById(panelId);
+                if (!btn || !panel) return;
+                btn.addEventListener('click', function () {
+                    const hidden = panel.classList.toggle('hidden');
+                    btn.setAttribute('aria-expanded', String(!hidden));
+                    if (!hidden && typeof onOpen === 'function') onOpen(panel);
+                });
+            }
+            bind('menuToggle', 'mobileMenu');
+            bind('searchToggle', 'searchPanel', function (panel) {
+                const input = panel.querySelector('input[name="q"]');
+                if (input) input.focus();
             });
         })();
     </script>
