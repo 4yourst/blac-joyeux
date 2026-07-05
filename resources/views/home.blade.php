@@ -9,27 +9,44 @@
 
 @section('content')
 
-    {{-- ========================= HERO PLEINE LARGEUR ========================= --}}
-    <section class="relative isolate flex min-h-[78vh] items-center overflow-hidden">
-        <img src="{{ asset('images/site/hero.jpg') }}" alt="Sac à main Blac Joyaux" fetchpriority="high"
-             class="absolute inset-0 -z-10 h-full w-full object-cover object-center">
-        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-bj-navy/85 via-bj-navy/55 to-bj-navy/25"></div>
+    {{-- ========================= HERO — CARROUSEL ========================= --}}
+    @php
+        $heroSlides = ['images/site/hero.jpg', 'images/site/hero-2.jpg', 'images/site/hero-3.jpg'];
+    @endphp
+    <section class="relative isolate flex min-h-[78vh] cursor-grab touch-pan-y select-none items-center overflow-hidden active:cursor-grabbing" data-hero aria-label="Blac Joyaux">
+        {{-- Images du carrousel --}}
+        <div class="absolute inset-0 -z-20">
+            @foreach ($heroSlides as $i => $slide)
+                <img src="{{ asset($slide) }}" alt="Blac Joyaux — maroquinerie"
+                     @if ($i === 0) fetchpriority="high" @else loading="lazy" @endif
+                     data-hero-slide
+                     class="absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ease-in-out {{ $i === 0 ? 'opacity-100' : 'opacity-0' }}">
+            @endforeach
+        </div>
+        {{-- Overlay sombre pour garantir la lisibilité du texte --}}
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-bj-navy/85 via-bj-navy/60 to-bj-navy/30"></div>
 
-        <div class="mx-auto w-full max-w-5xl px-6 py-24">
+        {{-- Contenu épuré --}}
+        <div class="mx-auto w-full max-w-6xl px-6 py-24">
             <div class="max-w-xl text-bj-cream">
-                <p class="text-xs font-medium uppercase tracking-[0.35em] text-bj-gold-soft">Maison de maroquinerie ivoirienne</p>
-                <h1 class="mt-5 font-display text-5xl font-semibold leading-[1.05] sm:text-6xl">
-                    L'héritage<br>en main.
-                </h1>
-                <p class="mt-6 max-w-md text-base leading-relaxed text-bj-cream/85">
-                    La collection Joyau de Bla, inspirée de la poupée de fécondité ashanti. Des sacs à main
-                    d'exception, fabriqués en Côte d'Ivoire, pour la femme qui porte son histoire avec allure.
+                <p class="text-xs font-medium uppercase tracking-[0.4em] text-bj-gold-soft">Own the future</p>
+                <h1 class="mt-5 font-display text-6xl font-semibold leading-[1.02] sm:text-7xl">L'avenir en main.</h1>
+                <p class="mt-6 max-w-sm text-base leading-relaxed text-bj-cream/85">
+                    La maroquinerie ivoirienne qui allie héritage et élégance.
                 </p>
-                <a href="#creations"
+                <a href="{{ route('collection') }}"
                    class="mt-9 inline-flex items-center rounded-full bg-bj-cream px-8 py-4 text-xs font-medium uppercase tracking-widest text-bj-navy transition hover:bg-white">
                     Découvrir la collection
                 </a>
             </div>
+        </div>
+
+        {{-- Puces de navigation --}}
+        <div class="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2.5">
+            @foreach ($heroSlides as $i => $slide)
+                <button type="button" data-hero-dot aria-label="Voir l'image {{ $i + 1 }}"
+                        class="h-2 w-2 rounded-full transition-all duration-300 {{ $i === 0 ? 'w-6 bg-bj-cream' : 'bg-bj-cream/50 hover:bg-bj-cream/80' }}"></button>
+            @endforeach
         </div>
     </section>
 
@@ -132,3 +149,58 @@
     </section>
 
 @endsection
+
+@push('scripts')
+<script>
+    // Carrousel du hero : défilement auto, pause au survol, puces cliquables, accessible.
+    (function () {
+        const root = document.querySelector('[data-hero]');
+        if (!root) return;
+        const slides = Array.from(root.querySelectorAll('[data-hero-slide]'));
+        const dots = Array.from(root.querySelectorAll('[data-hero-dot]'));
+        if (slides.length < 2) return;
+
+        const delay = 2000;
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let current = 0;
+        let timer = null;
+
+        function show(n) {
+            current = (n + slides.length) % slides.length;
+            slides.forEach((s, i) => s.style.opacity = i === current ? '1' : '0');
+            dots.forEach((d, i) => {
+                const active = i === current;
+                d.setAttribute('aria-current', active ? 'true' : 'false');
+                d.classList.toggle('w-6', active);
+                d.classList.toggle('bg-bj-cream', active);
+                d.classList.toggle('w-2', !active);
+                d.classList.toggle('bg-bj-cream/50', !active);
+            });
+        }
+
+        function start() { if (reduce) return; stop(); timer = setInterval(() => show(current + 1), delay); }
+        function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+        dots.forEach((d, i) => d.addEventListener('click', () => { show(i); start(); }));
+        root.addEventListener('mouseenter', stop);
+        root.addEventListener('mouseleave', start);
+
+        // Navigation par glissement (doigt, souris, trackpad) via Pointer Events.
+        let startX = null;
+        const threshold = 40;
+        root.addEventListener('pointerdown', (e) => { startX = e.clientX; stop(); });
+        root.addEventListener('pointerup', (e) => {
+            if (startX === null) return;
+            const dx = e.clientX - startX;
+            startX = null;
+            if (dx <= -threshold) show(current + 1);
+            else if (dx >= threshold) show(current - 1);
+            start();
+        });
+        root.addEventListener('pointercancel', () => { startX = null; start(); });
+
+        show(0);
+        start();
+    })();
+</script>
+@endpush
