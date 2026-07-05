@@ -33,7 +33,7 @@
     @else
         <div class="mt-6 overflow-hidden rounded-2xl border border-bj-border bg-white">
             <table class="w-full text-sm">
-                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/50">
+                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/60">
                     <tr>
                         <th class="px-4 py-3">#</th>
                         <th class="px-4 py-3">Cliente</th>
@@ -49,7 +49,7 @@
                             <td class="px-4 py-3 font-medium text-bj-navy">#{{ $order->id }}</td>
                             <td class="px-4 py-3">
                                 <p class="font-medium text-bj-navy">{{ $order->customer_name }}</p>
-                                <p class="text-xs text-bj-ink/50">{{ $order->customer_phone }}</p>
+                                <p class="text-xs text-bj-ink/60">{{ $order->customer_phone }}</p>
                             </td>
                             <td class="px-4 py-3 text-bj-ink/70">{{ $order->created_at->format('d/m/Y H:i') }}</td>
                             <td class="px-4 py-3 text-center">@include('admin.partials.channel-badge', ['order' => $order])</td>

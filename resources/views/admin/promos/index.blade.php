@@ -20,7 +20,7 @@
     @else
         <div class="mt-8 overflow-hidden rounded-2xl border border-bj-border bg-white">
             <table class="w-full text-sm">
-                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/50">
+                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/60">
                     <tr>
                         <th class="px-4 py-3">Code</th>
                         <th class="px-4 py-3 text-center">Réduction</th>
@@ -32,7 +32,7 @@
                 <tbody class="divide-y divide-bj-border">
                     @foreach ($promos as $promo)
                         @php($isLive = $promo->is_active && $promo->starts_at <= now() && $promo->ends_at >= now())
-                        <tr>
+                        <tr class="transition hover:bg-bj-cream/40">
                             <td class="px-4 py-3 font-semibold uppercase text-bj-navy">{{ $promo->code }}</td>
                             <td class="px-4 py-3 text-center text-bj-navy">−{{ $promo->discount_percent }} %</td>
                             <td class="px-4 py-3 text-bj-ink/70">

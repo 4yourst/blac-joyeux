@@ -24,14 +24,14 @@
             @csrf
 
             <div>
-                <label for="email" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Email</label>
+                <label for="email" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Email</label>
                 <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username"
                        class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                 @error('email') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <div>
-                <label for="password" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Mot de passe</label>
+                <label for="password" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Mot de passe</label>
                 <input id="password" type="password" name="password" required autocomplete="current-password"
                        class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                 @error('password') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
@@ -48,7 +48,7 @@
             </button>
         </form>
 
-        <p class="mt-6 text-center text-xs text-bj-ink/50">
+        <p class="mt-6 text-center text-xs text-bj-ink/60">
             <a href="{{ route('home') }}" class="transition hover:text-bj-navy">&larr; Retour à la boutique</a>
         </p>
     </div>

@@ -9,16 +9,16 @@
 
     {{-- Indicateurs --}}
     <div class="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
-        <div class="rounded-2xl border border-bj-border bg-white p-5">
-            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Produits</p>
+        <div class="rounded-2xl border border-bj-border bg-white p-5 transition hover:shadow-md">
+            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Produits</p>
             <p class="mt-2 font-display text-3xl font-semibold text-bj-navy">{{ $productCount }}</p>
         </div>
-        <div class="rounded-2xl border border-bj-border bg-white p-5">
-            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Options de livraison</p>
+        <div class="rounded-2xl border border-bj-border bg-white p-5 transition hover:shadow-md">
+            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Options de livraison</p>
             <p class="mt-2 font-display text-3xl font-semibold text-bj-navy">{{ $deliveryCount }}</p>
         </div>
-        <div class="rounded-2xl border border-bj-border bg-white p-5">
-            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Commandes</p>
+        <div class="rounded-2xl border border-bj-border bg-white p-5 transition hover:shadow-md">
+            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Commandes</p>
             <p class="mt-2 font-display text-3xl font-semibold text-bj-navy">{{ $orderCount }}</p>
         </div>
     </div>
@@ -26,16 +26,16 @@
     {{-- Répartition des commandes par voie --}}
     <h2 class="mt-10 font-display text-2xl font-semibold text-bj-navy">Répartition des commandes</h2>
     <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        <div class="rounded-2xl border border-bj-border bg-white p-5">
-            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Paiement Mobile Money</p>
+        <div class="rounded-2xl border border-bj-border bg-white p-5 transition hover:shadow-md">
+            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Paiement Mobile Money</p>
             <p class="mt-2 text-2xl font-semibold text-bj-navy">{{ $paidCount }}</p>
         </div>
-        <div class="rounded-2xl border border-bj-border bg-white p-5">
-            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Conversion WhatsApp</p>
+        <div class="rounded-2xl border border-bj-border bg-white p-5 transition hover:shadow-md">
+            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Conversion WhatsApp</p>
             <p class="mt-2 text-2xl font-semibold text-emerald-600">{{ $whatsappCount }}</p>
         </div>
-        <div class="rounded-2xl border border-bj-border bg-white p-5">
-            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">En attente</p>
+        <div class="rounded-2xl border border-bj-border bg-white p-5 transition hover:shadow-md">
+            <p class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">En attente</p>
             <p class="mt-2 text-2xl font-semibold text-bj-gold">{{ $pendingCount }}</p>
         </div>
     </div>
@@ -47,7 +47,7 @@
     @else
         <div class="mt-4 overflow-hidden rounded-2xl border border-bj-border bg-white">
             <table class="w-full text-sm">
-                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/50">
+                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/60">
                     <tr>
                         <th class="px-4 py-3">#</th>
                         <th class="px-4 py-3">Cliente</th>

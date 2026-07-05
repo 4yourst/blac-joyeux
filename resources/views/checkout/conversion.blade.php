@@ -6,7 +6,7 @@
 
     <section class="mx-auto max-w-3xl px-5 pt-10">
         <div class="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-            Votre commande <span class="font-semibold">#{{ $order->id }}</span> a bien été enregistrée.
+            Votre commande a bien été enregistrée.
         </div>
 
         <h1 class="mt-6 font-display text-4xl font-semibold text-bj-navy">Comment souhaitez-vous finaliser ?</h1>

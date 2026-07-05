@@ -8,14 +8,14 @@
     <div class="rounded-2xl border border-bj-border bg-white p-6">
         <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div class="sm:col-span-2">
-                <label for="name" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Nom *</label>
+                <label for="name" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Nom *</label>
                 <input type="text" id="name" name="name" value="{{ old('name', $product->name) }}" required
                        class="mt-2 w-full rounded-xl border border-bj-border px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                 @error('name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <div>
-                <label for="slug" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Slug (URL)</label>
+                <label for="slug" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Slug (URL)</label>
                 <input type="text" id="slug" name="slug" value="{{ old('slug', $product->slug) }}"
                        placeholder="généré automatiquement"
                        class="mt-2 w-full rounded-xl border border-bj-border px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
@@ -23,14 +23,14 @@
             </div>
 
             <div>
-                <label for="price" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Prix (FCFA) *</label>
+                <label for="price" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Prix (FCFA) *</label>
                 <input type="number" id="price" name="price" value="{{ old('price', $product->price) }}" required min="0" step="1"
                        class="mt-2 w-full rounded-xl border border-bj-border px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                 @error('price') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <div>
-                <label for="type" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Type *</label>
+                <label for="type" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Type *</label>
                 <select id="type" name="type" required
                         class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                     <option value="" disabled @selected(! old('type', $product->type))>Choisir un type…</option>
@@ -42,7 +42,7 @@
             </div>
 
             <div>
-                <label for="collection" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Collection *</label>
+                <label for="collection" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Collection *</label>
                 <select id="collection" name="collection" required
                         class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                     <option value="" disabled @selected(! old('collection', $product->collection))>Choisir une collection…</option>
@@ -54,48 +54,48 @@
             </div>
 
             <div class="sm:col-span-2">
-                <label for="description" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Description *</label>
+                <label for="description" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Description *</label>
                 <textarea id="description" name="description" rows="3" required
                           class="mt-2 w-full rounded-xl border border-bj-border px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">{{ old('description', $product->description) }}</textarea>
                 @error('description') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <div class="sm:col-span-2">
-                <label for="story" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Histoire du modèle (storytelling)</label>
+                <label for="story" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Histoire du modèle (storytelling)</label>
                 <textarea id="story" name="story" rows="3"
                           class="mt-2 w-full rounded-xl border border-bj-border px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">{{ old('story', $product->story) }}</textarea>
                 @error('story') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <div>
-                <label for="dimensions" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Dimensions</label>
+                <label for="dimensions" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Dimensions</label>
                 <input type="text" id="dimensions" name="dimensions" value="{{ old('dimensions', $product->dimensions) }}"
                        class="mt-2 w-full rounded-xl border border-bj-border px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                 @error('dimensions') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <div>
-                <label for="material" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Matière</label>
+                <label for="material" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Matière</label>
                 <input type="text" id="material" name="material" value="{{ old('material', $product->material) }}"
                        class="mt-2 w-full rounded-xl border border-bj-border px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                 @error('material') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <div class="sm:col-span-2">
-                <label for="care" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Entretien</label>
+                <label for="care" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Entretien</label>
                 <input type="text" id="care" name="care" value="{{ old('care', $product->care) }}"
                        class="mt-2 w-full rounded-xl border border-bj-border px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                 @error('care') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <div class="sm:col-span-2">
-                <label for="image" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Visuel</label>
+                <label for="image" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Visuel</label>
                 @if ($product->image && file_exists(public_path('images/'.$product->image)))
                     <div class="mt-2 flex items-center gap-3">
                         <div class="h-16 w-16 overflow-hidden rounded-lg">
                             <x-product-image :product="$product" size="thumbnail" />
                         </div>
-                        <span class="text-xs text-bj-ink/50">Visuel actuel — téléversez un fichier pour le remplacer.</span>
+                        <span class="text-xs text-bj-ink/60">Visuel actuel — téléversez un fichier pour le remplacer.</span>
                     </div>
                 @endif
                 <input type="file" id="image" name="image" accept="image/*"
@@ -119,7 +119,7 @@
                 class="inline-flex items-center rounded-full bg-bj-navy px-7 py-3.5 text-sm font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">
             Enregistrer
         </button>
-        <a href="{{ route('admin.products.index') }}" class="text-xs font-medium uppercase tracking-widest text-bj-ink/50 transition hover:text-bj-navy">
+        <a href="{{ route('admin.products.index') }}" class="text-xs font-medium uppercase tracking-widest text-bj-ink/60 transition hover:text-bj-navy">
             Annuler
         </a>
     </div>

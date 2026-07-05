@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <a href="{{ route('admin.orders.index') }}" class="text-xs font-medium uppercase tracking-widest text-bj-ink/50 transition hover:text-bj-navy">
+    <a href="{{ route('admin.orders.index') }}" class="text-xs font-medium uppercase tracking-widest text-bj-ink/60 transition hover:text-bj-navy">
         &larr; Retour aux commandes
     </a>
 
@@ -25,7 +25,7 @@
                         <li class="flex items-center justify-between py-3 text-sm">
                             <span class="text-bj-ink/80">
                                 {{ $item->quantity }} × {{ $item->product?->name ?? 'Produit supprimé' }}
-                                <span class="text-bj-ink/50">({{ number_format($item->unit_price, 0, ',', ' ') }} FCFA l'unité)</span>
+                                <span class="text-bj-ink/60">({{ number_format($item->unit_price, 0, ',', ' ') }} FCFA l'unité)</span>
                             </span>
                             <span class="font-medium text-bj-navy">{{ number_format($item->unit_price * $item->quantity, 0, ',', ' ') }} FCFA</span>
                         </li>
@@ -56,21 +56,21 @@
                 <h2 class="font-display text-xl font-semibold text-bj-navy">Cliente</h2>
                 <dl class="mt-4 space-y-3 text-sm">
                     <div>
-                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Nom</dt>
+                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Nom</dt>
                         <dd class="mt-0.5 text-bj-navy">{{ $order->customer_name }}</dd>
                     </div>
                     <div>
-                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Téléphone</dt>
+                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Téléphone</dt>
                         <dd class="mt-0.5 text-bj-navy">{{ $order->customer_phone }}</dd>
                     </div>
                     @if ($order->customer_email)
                         <div>
-                            <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">E-mail</dt>
+                            <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">E-mail</dt>
                             <dd class="mt-0.5 text-bj-navy">{{ $order->customer_email }}</dd>
                         </div>
                     @endif
                     <div>
-                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Adresse de livraison</dt>
+                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Adresse de livraison</dt>
                         <dd class="mt-0.5 text-bj-navy">{{ $order->customer_address }}</dd>
                     </div>
                 </dl>
@@ -80,11 +80,11 @@
                 <h2 class="font-display text-xl font-semibold text-bj-navy">Conversion</h2>
                 <dl class="mt-4 space-y-3 text-sm">
                     <div>
-                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Voie</dt>
+                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Voie</dt>
                         <dd class="mt-0.5">@include('admin.partials.channel-badge', ['order' => $order])</dd>
                     </div>
                     <div>
-                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Moyen de paiement</dt>
+                        <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Moyen de paiement</dt>
                         <dd class="mt-0.5 text-bj-navy">{{ $order->paymentMethod?->name ?? '— (non défini)' }}</dd>
                     </div>
                 </dl>

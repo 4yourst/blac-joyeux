@@ -20,7 +20,7 @@
     @else
         <div class="mt-8 overflow-hidden rounded-2xl border border-bj-border bg-white">
             <table class="w-full text-sm">
-                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/50">
+                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/60">
                     <tr>
                         <th class="px-4 py-3">Produit</th>
                         <th class="px-4 py-3 text-right">Prix</th>
@@ -30,7 +30,7 @@
                 </thead>
                 <tbody class="divide-y divide-bj-border">
                     @foreach ($products as $product)
-                        <tr>
+                        <tr class="transition hover:bg-bj-cream/40">
                             <td class="px-4 py-3">
                                 <div class="flex items-center gap-3">
                                     <div class="h-12 w-12 shrink-0 overflow-hidden rounded-lg">
@@ -38,7 +38,7 @@
                                     </div>
                                     <div class="min-w-0">
                                         <p class="font-medium text-bj-navy">{{ $product->name }}</p>
-                                        <p class="truncate text-xs text-bj-ink/50">/{{ $product->slug }}</p>
+                                        <p class="truncate text-xs text-bj-ink/60">/{{ $product->slug }}</p>
                                     </div>
                                 </div>
                             </td>

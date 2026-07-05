@@ -20,7 +20,7 @@
     @else
         <div class="mt-8 overflow-hidden rounded-2xl border border-bj-border bg-white">
             <table class="w-full text-sm">
-                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/50">
+                <thead class="border-b border-bj-border bg-bj-sand/40 text-left text-xs uppercase tracking-widest text-bj-ink/60">
                     <tr>
                         <th class="px-4 py-3">Zone</th>
                         <th class="px-4 py-3 text-center">Délai</th>
@@ -31,7 +31,7 @@
                 </thead>
                 <tbody class="divide-y divide-bj-border">
                     @foreach ($deliveryOptions as $option)
-                        <tr>
+                        <tr class="transition hover:bg-bj-cream/40">
                             <td class="px-4 py-3 font-medium text-bj-navy">{{ $option->zone }}</td>
                             <td class="px-4 py-3 text-center text-bj-ink/80">{{ $option->delay_days }} j</td>
                             <td class="px-4 py-3 text-right font-medium text-bj-navy">{{ number_format($option->price, 0, ',', ' ') }} FCFA</td>

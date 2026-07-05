@@ -14,7 +14,7 @@
             <h1 class="mt-6 font-display text-3xl font-semibold text-bj-navy">Merci, {{ $order->customer_name }} !</h1>
             <p class="mt-3 text-[15px] text-bj-ink/75">
                 Votre paiement {{ $order->paymentMethod?->name }} a bien été reçu (simulation).<br>
-                Votre commande <span class="font-semibold text-bj-navy">#{{ $order->id }}</span> est
+                Votre commande est
                 <span class="font-semibold text-bj-navy">enregistrée</span> et
                 <span class="font-semibold text-bj-navy">en cours de traitement</span>.
             </p>
