@@ -51,7 +51,7 @@
                                 <form action="{{ route('cart.remove', $product) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-xs font-medium uppercase tracking-widest text-bj-ink/50 transition hover:text-red-600">
+                                    <button type="submit" class="text-xs font-medium uppercase tracking-widest text-bj-ink/60 transition hover:text-red-600">
                                         Retirer
                                     </button>
                                 </form>
@@ -72,7 +72,7 @@
                     <span class="text-sm text-bj-ink/70">Sous-total</span>
                     <span class="text-sm font-semibold text-bj-navy">{{ number_format($subtotal, 0, ',', ' ') }} FCFA</span>
                 </div>
-                <p class="mt-1 text-xs text-bj-ink/50">Les frais de livraison seront calculés à l'étape suivante.</p>
+                <p class="mt-1 text-xs text-bj-ink/60">Les frais de livraison seront calculés à l'étape suivante.</p>
 
                 <a href="{{ route('checkout.create') }}"
                    class="mt-6 inline-flex w-full items-center justify-center rounded-full bg-bj-navy px-7 py-4 text-sm font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">

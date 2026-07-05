@@ -32,7 +32,7 @@
             </a>
         </div>
 
-        <p class="mt-8 text-sm text-bj-ink/50">
+        <p class="mt-8 text-sm text-bj-ink/60">
             Besoin d'aide ? <a href="{{ route('contact') }}" class="font-medium text-bj-navy underline decoration-bj-gold underline-offset-4 transition hover:text-bj-gold">Contactez-nous</a>.
         </p>
     </section>

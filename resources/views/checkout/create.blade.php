@@ -71,20 +71,20 @@
                 <h2 class="font-display text-xl font-semibold text-bj-navy">Vos coordonnées</h2>
                 <div class="mt-4 space-y-4">
                     <div>
-                        <label for="customer_name" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Nom complet</label>
+                        <label for="customer_name" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Nom complet</label>
                         <input type="text" id="customer_name" name="customer_name" value="{{ old('customer_name') }}" required
                                class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                         @error('customer_name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label for="customer_phone" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Téléphone</label>
+                        <label for="customer_phone" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Téléphone</label>
                         <input type="tel" id="customer_phone" name="customer_phone" value="{{ old('customer_phone') }}" required
                                placeholder="+225 ..."
                                class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                         @error('customer_phone') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                     </div>
                     <div>
-                        <label for="customer_address" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Adresse de livraison</label>
+                        <label for="customer_address" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Adresse de livraison</label>
                         <textarea id="customer_address" name="customer_address" rows="3" required
                                   class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">{{ old('customer_address') }}</textarea>
                         @error('customer_address') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
@@ -96,7 +96,7 @@
                     class="inline-flex w-full items-center justify-center rounded-full bg-bj-navy px-7 py-4 text-sm font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">
                 Enregistrer ma commande
             </button>
-            <p class="text-center text-xs text-bj-ink/50">Vous choisirez ensuite votre mode de finalisation : Mobile Money ou WhatsApp.</p>
+            <p class="text-center text-xs text-bj-ink/60">Vous choisirez ensuite votre mode de finalisation : Mobile Money ou WhatsApp.</p>
         </form>
     </section>
 

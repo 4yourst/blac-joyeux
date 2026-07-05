@@ -129,7 +129,7 @@
                 <div class="lg:pr-6">
                     <p class="font-display text-3xl font-semibold">Blac Joyaux</p>
                     <p class="mt-1 text-[10px] font-medium uppercase tracking-[0.3em] text-bj-gold-soft">Maroquinerie ivoirienne</p>
-                    <p class="mt-5 max-w-xs text-sm leading-relaxed text-bj-cream/70">
+                    <p class="mt-5 max-w-xs text-sm leading-relaxed text-bj-cream/80">
                         La collection Joyau de Bla, inspirée de la poupée de fécondité ashanti :
                         l'héritage culturel au service d'une élégance accessible.
                     </p>
@@ -150,9 +150,9 @@
                 <div>
                     <h3 class="text-[11px] font-semibold uppercase tracking-[0.25em] text-bj-gold-soft">Explorer</h3>
                     <ul class="mt-4 space-y-2.5 text-sm">
-                        <li><a href="{{ route('home') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Accueil</a></li>
-                        <li><a href="{{ route('collection') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Collection</a></li>
-                        <li><a href="{{ route('about') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Notre histoire</a></li>
+                        <li><a href="{{ route('home') }}" class="text-bj-cream/80 transition hover:text-bj-cream">Accueil</a></li>
+                        <li><a href="{{ route('collection') }}" class="text-bj-cream/80 transition hover:text-bj-cream">Collection</a></li>
+                        <li><a href="{{ route('about') }}" class="text-bj-cream/80 transition hover:text-bj-cream">Notre histoire</a></li>
                     </ul>
                 </div>
 
@@ -160,16 +160,16 @@
                 <div>
                     <h3 class="text-[11px] font-semibold uppercase tracking-[0.25em] text-bj-gold-soft">Aide</h3>
                     <ul class="mt-4 space-y-2.5 text-sm">
-                        <li><a href="{{ route('shipping') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Livraison &amp; Paiement</a></li>
-                        <li><a href="{{ route('faq') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Questions fréquentes</a></li>
-                        <li><a href="{{ route('contact') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Contact</a></li>
+                        <li><a href="{{ route('shipping') }}" class="text-bj-cream/80 transition hover:text-bj-cream">Livraison &amp; Paiement</a></li>
+                        <li><a href="{{ route('faq') }}" class="text-bj-cream/80 transition hover:text-bj-cream">Questions fréquentes</a></li>
+                        <li><a href="{{ route('contact') }}" class="text-bj-cream/80 transition hover:text-bj-cream">Contact</a></li>
                     </ul>
                 </div>
 
                 {{-- Nous trouver --}}
                 <div>
                     <h3 class="text-[11px] font-semibold uppercase tracking-[0.25em] text-bj-gold-soft">Nous trouver</h3>
-                    <ul class="mt-4 space-y-2.5 text-sm text-bj-cream/70">
+                    <ul class="mt-4 space-y-2.5 text-sm text-bj-cream/80">
                         <li>Showroom — Cocody Palmeraie<br>Abidjan, Côte d'Ivoire</li>
                         <li>Lun – Sam · 9h – 18h</li>
                         <li>
@@ -183,7 +183,7 @@
             </div>
 
             {{-- Barre basse --}}
-            <div class="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-bj-cream/50 sm:flex-row sm:items-center sm:justify-between">
+            <div class="mt-14 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-bj-cream/60 sm:flex-row sm:items-center sm:justify-between">
                 <p class="uppercase tracking-widest">© {{ now()->year }} Blac Joyaux — Abidjan, Côte d'Ivoire</p>
                 <p class="tracking-wide">Paiement Mobile Money &amp; espèces · Livraison 1 à 3 jours</p>
             </div>

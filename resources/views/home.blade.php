@@ -55,15 +55,15 @@
         <div class="mx-auto grid max-w-5xl grid-cols-1 divide-y divide-bj-border px-6 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             <div class="px-4 py-6 text-center">
                 <p class="font-display text-lg font-semibold text-bj-navy">Livraison 1 à 3 jours</p>
-                <p class="mt-1 text-xs uppercase tracking-widest text-bj-ink/50">Abidjan &amp; intérieur</p>
+                <p class="mt-1 text-xs uppercase tracking-widest text-bj-ink/60">Abidjan &amp; intérieur</p>
             </div>
             <div class="px-4 py-6 text-center">
                 <p class="font-display text-lg font-semibold text-bj-navy">Paiement au choix</p>
-                <p class="mt-1 text-xs uppercase tracking-widest text-bj-ink/50">Mobile Money ou WhatsApp</p>
+                <p class="mt-1 text-xs uppercase tracking-widest text-bj-ink/60">Mobile Money ou WhatsApp</p>
             </div>
             <div class="px-4 py-6 text-center">
                 <p class="font-display text-lg font-semibold text-bj-navy">Fabrication ivoirienne</p>
-                <p class="mt-1 text-xs uppercase tracking-widest text-bj-ink/50">Héritage Joyau de Bla</p>
+                <p class="mt-1 text-xs uppercase tracking-widest text-bj-ink/60">Héritage Joyau de Bla</p>
             </div>
         </div>
     </section>
@@ -73,7 +73,7 @@
         <div class="text-center">
             <p class="text-xs font-medium uppercase tracking-[0.3em] text-bj-gold">Nos créations</p>
             <h2 class="mt-3 font-display text-4xl font-semibold text-bj-navy">La collection</h2>
-            <p class="mx-auto mt-3 max-w-md text-sm leading-relaxed text-bj-ink/70">
+            <p class="mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-bj-ink/75">
                 Une sélection de nos pièces phares — découvrez l'ensemble du catalogue en boutique.
             </p>
         </div>
@@ -139,7 +139,7 @@
     {{-- ========================= CTA FINAL ========================= --}}
     <section class="mx-auto max-w-3xl px-6 py-24 text-center">
         <h2 class="font-display text-4xl font-semibold text-bj-navy">Portez votre histoire</h2>
-        <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-bj-ink/70">
+        <p class="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-bj-ink/75">
             Découvrez la collection Joyau de Bla et trouvez la pièce qui vous ressemble.
         </p>
         <a href="{{ route('collection') }}"
@@ -160,7 +160,7 @@
         const dots = Array.from(root.querySelectorAll('[data-hero-dot]'));
         if (slides.length < 2) return;
 
-        const delay = 2000;
+        const delay = 3000;
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         let current = 0;
         let timer = null;

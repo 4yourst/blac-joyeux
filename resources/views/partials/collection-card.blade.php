@@ -7,7 +7,7 @@
         </span>
     </div>
     <div class="mt-4 text-center">
-        <h3 class="font-display text-lg font-semibold text-bj-navy transition group-hover:text-bj-gold">{{ $product->name }}</h3>
-        <p class="mt-1 text-sm tracking-wide text-bj-ink/70">{{ $product->formatted_price }}</p>
+        <h3 class="font-display text-xl font-semibold text-bj-navy transition group-hover:text-bj-gold">{{ $product->name }}</h3>
+        <p class="mt-1.5 text-[15px] font-semibold tracking-wide text-bj-gold">{{ $product->formatted_price }}</p>
     </div>
 </a>

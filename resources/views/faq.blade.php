@@ -46,7 +46,7 @@
                             </svg>
                         </span>
                     </summary>
-                    <div class="border-t border-bj-border px-5 py-4 text-sm leading-relaxed text-bj-ink/75">
+                    <div class="border-t border-bj-border px-5 py-4 text-[15px] leading-relaxed text-bj-ink/75">
                         {{ $faq['answer'] }}
                     </div>
                 </details>

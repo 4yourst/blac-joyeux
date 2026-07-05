@@ -83,7 +83,7 @@
                       class="flex flex-col gap-3 sm:flex-row sm:items-center">
                     @csrf
                     <label class="flex items-center gap-3 rounded-full border border-bj-border bg-white px-4 py-2">
-                        <span class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Qté</span>
+                        <span class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Qté</span>
                         <select name="quantity" class="bg-transparent text-sm font-medium text-bj-navy focus:outline-none">
                             @for ($i = 1; $i <= 5; $i++)
                                 <option value="{{ $i }}">{{ $i }}</option>
@@ -97,7 +97,7 @@
                 </form>
             @else
                 <button type="button" disabled
-                        class="inline-flex w-full cursor-not-allowed items-center justify-center rounded-full bg-bj-sand px-7 py-4 text-sm font-medium uppercase tracking-widest text-bj-ink/50 sm:w-auto">
+                        class="inline-flex w-full cursor-not-allowed items-center justify-center rounded-full bg-bj-sand px-7 py-4 text-sm font-medium uppercase tracking-widest text-bj-ink/60 sm:w-auto">
                     Indisponible
                 </button>
             @endif
@@ -122,13 +122,13 @@
                 ] as $label => $value)
                     @if ($value)
                         <div class="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-                            <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">{{ $label }}</dt>
+                            <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">{{ $label }}</dt>
                             <dd class="text-sm text-bj-ink/85 sm:text-right">{{ $value }}</dd>
                         </div>
                     @endif
                 @endforeach
                 <div class="flex items-center justify-between px-5 py-4">
-                    <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/50">Prix</dt>
+                    <dt class="text-xs font-medium uppercase tracking-widest text-bj-ink/60">Prix</dt>
                     <dd class="text-sm font-semibold text-bj-gold">{{ $product->formatted_price }}</dd>
                 </div>
             </dl>

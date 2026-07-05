@@ -72,19 +72,19 @@
         <div class="mt-12 grid gap-6 sm:grid-cols-3">
             <div class="rounded-2xl border border-bj-border bg-white p-7 text-center">
                 <h3 class="font-display text-xl font-semibold text-bj-navy">Made in Côte d'Ivoire</h3>
-                <p class="mt-3 text-sm leading-relaxed text-bj-ink/70">
+                <p class="mt-3 text-[15px] leading-relaxed text-bj-ink/70">
                     Une fabrication locale qui valorise les mains et les talents ivoiriens.
                 </p>
             </div>
             <div class="rounded-2xl border border-bj-border bg-white p-7 text-center">
                 <h3 class="font-display text-xl font-semibold text-bj-navy">Durabilité</h3>
-                <p class="mt-3 text-sm leading-relaxed text-bj-ink/70">
+                <p class="mt-3 text-[15px] leading-relaxed text-bj-ink/70">
                     Des matières choisies et un travail soigné, pour des pièces faites pour durer.
                 </p>
             </div>
             <div class="rounded-2xl border border-bj-border bg-white p-7 text-center">
                 <h3 class="font-display text-xl font-semibold text-bj-navy">Élégance accessible</h3>
-                <p class="mt-3 text-sm leading-relaxed text-bj-ink/70">
+                <p class="mt-3 text-[15px] leading-relaxed text-bj-ink/70">
                     Le luxe à portée de main, de 40 000 à 100 000 FCFA, sans compromis sur la qualité.
                 </p>
             </div>
@@ -106,11 +106,11 @@
                 {{-- Réassurance : horaires (provisoires, à confirmer) + contact direct --}}
                 <dl class="mt-6 space-y-2 text-sm">
                     <div class="flex items-start gap-3">
-                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/50">Horaires</dt>
+                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/60">Horaires</dt>
                         <dd class="text-bj-ink/80">Du lundi au samedi, 9h – 18h</dd>
                     </div>
                     <div class="flex items-start gap-3">
-                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/50">Sur RDV</dt>
+                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/60">Sur RDV</dt>
                         <dd class="text-bj-ink/80">Dimanche, sur rendez-vous</dd>
                     </div>
                 </dl>

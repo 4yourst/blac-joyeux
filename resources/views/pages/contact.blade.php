@@ -25,15 +25,15 @@
 
                 <dl class="mt-6 space-y-4 text-sm">
                     <div class="flex items-start gap-3">
-                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/50">Adresse</dt>
+                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/60">Adresse</dt>
                         <dd class="text-bj-ink/80">Cocody Palmeraie, Abidjan — Côte d'Ivoire</dd>
                     </div>
                     <div class="flex items-start gap-3">
-                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/50">Horaires</dt>
+                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/60">Horaires</dt>
                         <dd class="text-bj-ink/80">Du lundi au samedi, 9h – 18h<br>Dimanche, sur rendez-vous</dd>
                     </div>
                     <div class="flex items-start gap-3">
-                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/50">Téléphone</dt>
+                        <dt class="w-24 shrink-0 text-xs font-medium uppercase tracking-widest text-bj-ink/60">Téléphone</dt>
                         <dd class="text-bj-ink/80">+225 07 00 00 00 00</dd>
                     </div>
                 </dl>
@@ -70,19 +70,19 @@
             <form action="{{ route('contact.send') }}" method="POST" class="mt-6 space-y-4">
                 @csrf
                 <div>
-                    <label for="name" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Nom complet</label>
+                    <label for="name" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Nom complet</label>
                     <input type="text" id="name" name="name" value="{{ old('name') }}" required
                            class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                     @error('name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                 </div>
                 <div>
-                    <label for="phone" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Téléphone</label>
+                    <label for="phone" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Téléphone</label>
                     <input type="tel" id="phone" name="phone" value="{{ old('phone') }}" required placeholder="+225 ..."
                            class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">
                     @error('phone') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                 </div>
                 <div>
-                    <label for="message" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/50">Message</label>
+                    <label for="message" class="block text-xs font-medium uppercase tracking-widest text-bj-ink/60">Message</label>
                     <textarea id="message" name="message" rows="5" required
                               class="mt-2 w-full rounded-xl border border-bj-border bg-white px-4 py-3 text-sm text-bj-navy focus:border-bj-navy focus:outline-none">{{ old('message') }}</textarea>
                     @error('message') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
@@ -101,14 +101,14 @@
         <div class="grid gap-6 sm:grid-cols-2">
             <div class="rounded-2xl border border-bj-border bg-white/60 p-6">
                 <h3 class="font-display text-xl font-semibold text-bj-navy">Livraison</h3>
-                <p class="mt-3 text-sm leading-relaxed text-bj-ink/70">
+                <p class="mt-3 text-[15px] leading-relaxed text-bj-ink/70">
                     Abidjan (Cocody, Plateau, Marcory) en 1 jour, autres communes en 2 jours,
                     intérieur de la Côte d'Ivoire en 3 jours.
                 </p>
             </div>
             <div class="rounded-2xl border border-bj-border bg-white/60 p-6">
                 <h3 class="font-display text-xl font-semibold text-bj-navy">Paiement</h3>
-                <p class="mt-3 text-sm leading-relaxed text-bj-ink/70">
+                <p class="mt-3 text-[15px] leading-relaxed text-bj-ink/70">
                     Mobile Money (Wave, Orange Money, MTN, Moov) ou espèces à la livraison
                     en finalisant sur WhatsApp.
                 </p>
