@@ -73,6 +73,48 @@ class StorefrontTest extends TestCase
             ->assertSee('Collection DO — Cabas Lagune');
     }
 
+    /** La recherche filtre les produits par nom. */
+    public function test_la_recherche_filtre_par_nom(): void
+    {
+        $this->get(route('collection', ['q' => 'Cabas']))
+            ->assertOk()
+            ->assertSee('Joyau de Bla — Cabas')
+            ->assertSee('Collection DO — Cabas Lagune')
+            ->assertDontSee('Joyau de Bla — Pochette');
+    }
+
+    /** Le filtre par type ne montre que les produits du type choisi. */
+    public function test_le_filtre_par_type(): void
+    {
+        $this->get(route('collection', ['type' => 'pochette']))
+            ->assertOk()
+            ->assertSee('Joyau de Bla — Pochette')
+            ->assertDontSee('Joyau de Bla — Sac de bureau');
+    }
+
+    /** Le filtre par collection et la combinaison type + collection fonctionnent. */
+    public function test_les_filtres_type_et_collection_sont_combinables(): void
+    {
+        $this->get(route('collection', ['collection' => 'Collection DO']))
+            ->assertOk()
+            ->assertSee('Collection DO — Cabas Lagune')
+            ->assertDontSee('Joyau de Bla — Sac de bureau');
+
+        $this->get(route('collection', ['type' => 'bureau', 'collection' => 'Collection DO']))
+            ->assertOk()
+            ->assertSee('Collection DO — Cartable Exécutif')
+            ->assertDontSee('Joyau de Bla — Sac de bureau')
+            ->assertDontSee('Collection DO — Cabas Lagune');
+    }
+
+    /** Une recherche sans résultat affiche l'état « aucun résultat ». */
+    public function test_recherche_sans_resultat(): void
+    {
+        $this->get(route('collection', ['q' => 'zzznexistepas']))
+            ->assertOk()
+            ->assertSee('Aucun résultat');
+    }
+
     /** L'accueil ne liste pas tout le catalogue : il renvoie vers la page Collection. */
     public function test_l_accueil_renvoie_vers_la_page_collection(): void
     {
