@@ -21,6 +21,7 @@
 
     @php
         $cartCount = app(\App\Services\Cart::class)->count();
+        $bannerPromo = \App\Models\PromoCode::currentlyValid()->orderBy('ends_at')->first();
         $navLinks = [
             ['route' => 'home', 'label' => 'Accueil'],
             ['route' => 'collection', 'label' => 'Collection'],
@@ -30,6 +31,17 @@
             ['route' => 'faq', 'label' => 'FAQ'],
         ];
     @endphp
+
+    {{-- Bannière promo avec compte à rebours basé sur la vraie date de fin --}}
+    @if ($bannerPromo)
+        <div id="promoBanner" data-ends="{{ $bannerPromo->ends_at->toIso8601String() }}"
+             class="bg-bj-navy px-4 py-2.5 text-center text-sm text-bj-cream">
+            <span class="font-medium">Code <span class="font-semibold text-bj-gold-soft">{{ $bannerPromo->code }}</span>
+            · −{{ $bannerPromo->discount_percent }} %</span>
+            <span class="text-bj-cream/70">— se termine dans</span>
+            <span data-countdown class="font-semibold tabular-nums">…</span>
+        </div>
+    @endif
 
     {{-- En-tête --}}
     <header class="sticky top-0 z-40 border-b border-bj-border/70 bg-bj-cream/90 backdrop-blur">
@@ -106,12 +118,20 @@
         </div>
     </header>
 
-    {{-- Message flash --}}
+    {{-- Messages flash --}}
     @if (session('status'))
         <div class="mx-auto mt-4 max-w-3xl px-5">
             <div class="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
                 <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
                 {{ session('status') }}
+            </div>
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="mx-auto mt-4 max-w-3xl px-5">
+            <div class="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                <span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>
+                {{ session('error') }}
             </div>
         </div>
     @endif
@@ -218,6 +238,32 @@
                 const input = panel.querySelector('input[name="q"]');
                 if (input) input.focus();
             });
+        })();
+    </script>
+
+    {{-- Compte à rebours de la bannière promo (basé sur la vraie date de fin) --}}
+    <script>
+        (function () {
+            const banner = document.getElementById('promoBanner');
+            if (!banner) return;
+            const output = banner.querySelector('[data-countdown]');
+            const ends = new Date(banner.dataset.ends).getTime();
+
+            function pad(n) { return String(n).padStart(2, '0'); }
+
+            function tick() {
+                const diff = ends - Date.now();
+                if (diff <= 0) { banner.remove(); return; } // Promo expiré : la bannière disparaît.
+                const totalSeconds = Math.floor(diff / 1000);
+                const days = Math.floor(totalSeconds / 86400);
+                const h = Math.floor((totalSeconds % 86400) / 3600);
+                const m = Math.floor((totalSeconds % 3600) / 60);
+                const s = totalSeconds % 60;
+                output.textContent = (days > 0 ? days + 'j ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+            }
+
+            tick();
+            setInterval(tick, 1000);
         })();
     </script>
 

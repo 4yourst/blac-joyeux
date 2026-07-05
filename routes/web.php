@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DeliveryOptionController as AdminDeliveryOptionController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\PromoCodeController as AdminPromoCodeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CollectionController;
@@ -37,6 +38,8 @@ Route::delete('/panier/{product}', [CartController::class, 'remove'])->name('car
 // Finalisation de commande
 Route::get('/commande', [CheckoutController::class, 'create'])->name('checkout.create');
 Route::post('/commande', [CheckoutController::class, 'store'])->name('checkout.store');
+Route::post('/commande/code-promo', [CheckoutController::class, 'applyPromo'])->name('checkout.promo.apply');
+Route::delete('/commande/code-promo', [CheckoutController::class, 'removePromo'])->name('checkout.promo.remove');
 Route::get('/commande/{order}/finalisation', [CheckoutController::class, 'conversion'])->name('checkout.conversion');
 
 // Voie A — Paiement Mobile Money simulé
@@ -54,6 +57,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('delivery-options', AdminDeliveryOptionController::class)->except('show');
     Route::get('orders', [AdminOrderController::class, 'index'])->name('orders.index');
     Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+    Route::resource('promos', AdminPromoCodeController::class)->parameters(['promos' => 'promo'])->except('show');
 });
 
 require __DIR__.'/auth.php';

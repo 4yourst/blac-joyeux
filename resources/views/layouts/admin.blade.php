@@ -37,6 +37,7 @@
                         'admin.dashboard' => 'Tableau de bord',
                         'admin.products.index' => 'Produits',
                         'admin.delivery-options.index' => 'Livraisons',
+                        'admin.promos.index' => 'Promos',
                         'admin.orders.index' => 'Commandes',
                     ];
                 @endphp

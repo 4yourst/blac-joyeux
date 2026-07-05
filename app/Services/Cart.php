@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Product;
+use App\Models\PromoCode;
 use Illuminate\Support\Collection;
 
 /**
@@ -12,6 +13,7 @@ use Illuminate\Support\Collection;
 class Cart
 {
     private const SESSION_KEY = 'cart';
+    private const PROMO_KEY = 'promo_code';
 
     /**
      * Lignes brutes du panier : [product_id => quantity].
@@ -53,6 +55,69 @@ class Cart
     public function clear(): void
     {
         session()->forget(self::SESSION_KEY);
+        session()->forget(self::PROMO_KEY);
+    }
+
+    /**
+     * Applique un code promo s'il est valide. Retourne le code appliqué ou null.
+     */
+    public function applyPromo(string $code): ?PromoCode
+    {
+        $promo = PromoCode::findValid($code);
+
+        if ($promo) {
+            session()->put(self::PROMO_KEY, $promo->code);
+        }
+
+        return $promo;
+    }
+
+    public function removePromo(): void
+    {
+        session()->forget(self::PROMO_KEY);
+    }
+
+    /**
+     * Code promo actuellement appliqué, revalidé à chaque appel : un code
+     * devenu invalide (expiré, désactivé) est automatiquement retiré.
+     */
+    public function promo(): ?PromoCode
+    {
+        $code = session()->get(self::PROMO_KEY);
+
+        if (! $code) {
+            return null;
+        }
+
+        $promo = PromoCode::findValid($code);
+
+        if (! $promo) {
+            $this->removePromo();
+        }
+
+        return $promo;
+    }
+
+    /**
+     * Montant de la réduction en FCFA (appliquée au sous-total produits).
+     */
+    public function discount(): int
+    {
+        $promo = $this->promo();
+
+        if (! $promo) {
+            return 0;
+        }
+
+        return (int) round($this->subtotal() * $promo->discount_percent / 100);
+    }
+
+    /**
+     * Total en FCFA : sous-total − réduction + livraison.
+     */
+    public function total(int $deliveryPrice = 0): int
+    {
+        return max(0, $this->subtotal() - $this->discount() + $deliveryPrice);
     }
 
     /**

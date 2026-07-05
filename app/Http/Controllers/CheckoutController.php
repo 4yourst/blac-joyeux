@@ -28,8 +28,34 @@ class CheckoutController extends Controller
         return view('checkout.create', [
             'items' => $this->cart->items(),
             'subtotal' => $this->cart->subtotal(),
+            'promo' => $this->cart->promo(),
+            'discount' => $this->cart->discount(),
             'deliveryOptions' => DeliveryOption::where('is_active', true)->orderBy('price')->get(),
         ]);
+    }
+
+    /**
+     * Applique un code promo saisi sur la page de finalisation.
+     */
+    public function applyPromo(Request $request)
+    {
+        $request->validate(['promo_code' => ['required', 'string', 'max:60']]);
+
+        $promo = $this->cart->applyPromo($request->input('promo_code'));
+
+        return $promo
+            ? redirect()->route('checkout.create')->with('status', 'Code « '.$promo->code.' » appliqué : −'.$promo->discount_percent.' %.')
+            : redirect()->route('checkout.create')->with('error', 'Code promo invalide ou expiré.');
+    }
+
+    /**
+     * Retire le code promo appliqué.
+     */
+    public function removePromo()
+    {
+        $this->cart->removePromo();
+
+        return redirect()->route('checkout.create')->with('status', 'Code promo retiré.');
     }
 
     /**
@@ -52,10 +78,14 @@ class CheckoutController extends Controller
 
         $deliveryOption = DeliveryOption::findOrFail($validated['delivery_option_id']);
         $items = $this->cart->items();
-        $total = $this->cart->subtotal() + $deliveryOption->price;
+
+        // Le code promo est revalidé ici (au cas où il aurait expiré depuis son application).
+        $promo = $this->cart->promo();
+        $discount = $this->cart->discount();
+        $total = $this->cart->total($deliveryOption->price);
 
         // Transaction : la commande et ses lignes sont enregistrées de façon atomique.
-        $order = DB::transaction(function () use ($validated, $deliveryOption, $items, $total) {
+        $order = DB::transaction(function () use ($validated, $deliveryOption, $items, $total, $promo, $discount) {
             $order = Order::create([
                 'customer_name' => $validated['customer_name'],
                 'customer_phone' => $validated['customer_phone'],
@@ -64,6 +94,8 @@ class CheckoutController extends Controller
                 'delivery_option_id' => $deliveryOption->id,
                 'payment_method_id' => null,        // Défini plus tard (voie Mobile Money), nullable (doc §4.2)
                 'total_amount' => $total,
+                'promo_code' => $promo?->code,
+                'discount_amount' => $discount,
                 'conversion_channel' => null,       // Renseigné au choix de la voie (doc §3.2)
                 'status' => 'pending',
             ]);

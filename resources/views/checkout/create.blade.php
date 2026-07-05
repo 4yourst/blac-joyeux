@@ -10,7 +10,33 @@
         </a>
         <h1 class="mt-4 font-display text-4xl font-semibold text-bj-navy">Finaliser ma commande</h1>
 
-        <form action="{{ route('checkout.store') }}" method="POST" class="mt-8 space-y-8">
+        {{-- Code promo (formulaire distinct du formulaire de commande) --}}
+        @if ($promo)
+            <form action="{{ route('checkout.promo.remove') }}" method="POST"
+                  class="mt-8 flex items-center justify-between rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+                @csrf
+                @method('DELETE')
+                <p class="text-sm text-emerald-800">
+                    Code <span class="font-semibold">{{ $promo->code }}</span> appliqué — −{{ $promo->discount_percent }} %
+                </p>
+                <button type="submit" class="text-xs font-medium uppercase tracking-widest text-emerald-700 transition hover:text-emerald-900">
+                    Retirer
+                </button>
+            </form>
+        @else
+            <form action="{{ route('checkout.promo.apply') }}" method="POST"
+                  class="mt-8 flex flex-col gap-3 rounded-2xl border border-bj-border bg-white p-4 sm:flex-row sm:items-center">
+                @csrf
+                <label for="promo_code" class="sr-only">Code promo</label>
+                <input type="text" id="promo_code" name="promo_code" value="{{ old('promo_code') }}" placeholder="Code promo"
+                       class="flex-1 rounded-xl border border-bj-border bg-white px-4 py-3 text-sm uppercase text-bj-navy placeholder:normal-case focus:border-bj-navy focus:outline-none">
+                <button type="submit" class="rounded-full bg-bj-navy px-6 py-3 text-xs font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">
+                    Appliquer
+                </button>
+            </form>
+        @endif
+
+        <form action="{{ route('checkout.store') }}" method="POST" class="mt-6 space-y-8">
             @csrf
 
             {{-- Récapitulatif des articles --}}
@@ -30,6 +56,12 @@
                         <dt class="text-bj-ink/70">Sous-total</dt>
                         <dd class="font-medium text-bj-navy">{{ number_format($subtotal, 0, ',', ' ') }} FCFA</dd>
                     </div>
+                    @if ($discount > 0)
+                        <div class="flex justify-between text-emerald-700">
+                            <dt>Réduction @if ($promo)<span class="text-emerald-700/80">({{ $promo->code }} −{{ $promo->discount_percent }} %)</span>@endif</dt>
+                            <dd class="font-medium">− {{ number_format($discount, 0, ',', ' ') }} FCFA</dd>
+                        </div>
+                    @endif
                     <div class="flex justify-between">
                         <dt class="text-bj-ink/70">Livraison</dt>
                         <dd class="font-medium text-bj-navy" data-recap-delivery>—</dd>
@@ -116,6 +148,7 @@
     // Récapitulatif dynamique : met à jour la livraison et le total au choix de l'option (doc §2.2).
     (function () {
         const subtotal = {{ $subtotal }};
+        const discount = {{ $discount }};
         const deliveryEl = document.querySelector('[data-recap-delivery]');
         const totalEl = document.querySelector('[data-recap-total]');
         const radios = document.querySelectorAll('input[name="delivery_option_id"]');
@@ -126,7 +159,7 @@
             const checked = document.querySelector('input[name="delivery_option_id"]:checked');
             const delivery = checked ? parseInt(checked.dataset.price, 10) : 0;
             deliveryEl.textContent = formatFcfa(delivery);
-            totalEl.textContent = formatFcfa(subtotal + delivery);
+            totalEl.textContent = formatFcfa(Math.max(0, subtotal - discount + delivery));
         }
 
         radios.forEach((radio) => radio.addEventListener('change', refresh));

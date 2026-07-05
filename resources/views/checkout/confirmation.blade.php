@@ -59,6 +59,12 @@
                 @endforeach
             </ul>
             <dl class="mt-5 space-y-2 border-t border-bj-border pt-4 text-sm">
+                @if ($order->discount_amount > 0)
+                    <div class="flex justify-between text-emerald-700">
+                        <dt>Réduction @if ($order->promo_code)<span class="text-emerald-700/80">({{ $order->promo_code }})</span>@endif</dt>
+                        <dd class="font-medium">− {{ number_format($order->discount_amount, 0, ',', ' ') }} FCFA</dd>
+                    </div>
+                @endif
                 <div class="flex justify-between">
                     <dt class="text-bj-ink/70">Livraison — {{ $order->deliveryOption->zone }}</dt>
                     <dd class="font-medium text-bj-navy">{{ number_format($order->deliveryOption->price, 0, ',', ' ') }} FCFA</dd>

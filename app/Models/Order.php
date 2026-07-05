@@ -16,6 +16,8 @@ class Order extends Model
         'delivery_option_id',
         'payment_method_id',
         'total_amount',
+        'promo_code',
+        'discount_amount',
         'conversion_channel',
         'status',
     ];
