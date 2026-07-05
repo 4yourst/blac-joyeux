@@ -22,7 +22,8 @@
     @php
         $cartCount = app(\App\Services\Cart::class)->count();
         $navLinks = [
-            ['route' => 'home', 'label' => 'Boutique'],
+            ['route' => 'home', 'label' => 'Accueil'],
+            ['route' => 'collection', 'label' => 'Collection'],
             ['route' => 'about', 'label' => 'Notre histoire'],
             ['route' => 'shipping', 'label' => 'Livraison & Paiement'],
             ['route' => 'contact', 'label' => 'Contact'],
@@ -32,7 +33,7 @@
 
     {{-- En-tête --}}
     <header class="sticky top-0 z-40 border-b border-bj-border/70 bg-bj-cream/90 backdrop-blur">
-        <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-4">
+        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
             <a href="{{ route('home') }}" class="flex flex-col leading-none">
                 <span class="font-display text-2xl font-semibold tracking-wide text-bj-navy">Blac Joyaux</span>
                 <span class="mt-0.5 text-[10px] font-medium uppercase tracking-[0.25em] text-bj-gold">Maroquinerie</span>
@@ -69,7 +70,7 @@
 
         {{-- Menu mobile --}}
         <div id="mobileMenu" class="hidden border-t border-bj-border/70 bg-bj-cream lg:hidden">
-            <nav class="mx-auto max-w-5xl px-5 py-3">
+            <nav class="mx-auto max-w-6xl px-5 py-3">
                 @foreach ($navLinks as $link)
                     <a href="{{ route($link['route']) }}"
                        class="block rounded-lg px-3 py-2.5 text-sm transition {{ request()->routeIs($link['route']) ? 'bg-bj-sand font-medium text-bj-navy' : 'text-bj-ink/80 hover:bg-bj-sand/60' }}">
@@ -124,8 +125,8 @@
                 <div>
                     <h3 class="text-[11px] font-semibold uppercase tracking-[0.25em] text-bj-gold-soft">Explorer</h3>
                     <ul class="mt-4 space-y-2.5 text-sm">
-                        <li><a href="{{ route('home') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Boutique</a></li>
-                        <li><a href="{{ route('home') }}#collection" class="text-bj-cream/70 transition hover:text-bj-cream">Nos créations</a></li>
+                        <li><a href="{{ route('home') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Accueil</a></li>
+                        <li><a href="{{ route('collection') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Collection</a></li>
                         <li><a href="{{ route('about') }}" class="text-bj-cream/70 transition hover:text-bj-cream">Notre histoire</a></li>
                     </ul>
                 </div>

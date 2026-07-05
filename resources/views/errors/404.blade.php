@@ -26,7 +26,7 @@
                class="inline-flex items-center justify-center rounded-full bg-bj-navy px-8 py-4 text-xs font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">
                 Retour à l'accueil
             </a>
-            <a href="{{ route('home') }}#collection"
+            <a href="{{ route('collection') }}"
                class="inline-flex items-center justify-center rounded-full border border-bj-navy/20 px-8 py-4 text-xs font-medium uppercase tracking-widest text-bj-navy transition hover:bg-bj-navy hover:text-bj-cream">
                 Voir la collection
             </a>

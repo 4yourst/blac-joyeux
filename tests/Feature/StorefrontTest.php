@@ -63,6 +63,25 @@ class StorefrontTest extends TestCase
             ->assertSee('"priceCurrency": "XOF"', false);
     }
 
+    /** La page Collection liste tous les produits disponibles. */
+    public function test_la_page_collection_liste_les_produits(): void
+    {
+        $this->get(route('collection'))
+            ->assertOk()
+            ->assertSee('La collection')
+            ->assertSee('Joyau de Bla — Sac de bureau')
+            ->assertSee('Collection DO — Cabas Lagune');
+    }
+
+    /** L'accueil ne liste pas tout le catalogue : il renvoie vers la page Collection. */
+    public function test_l_accueil_renvoie_vers_la_page_collection(): void
+    {
+        $this->get('/')
+            ->assertOk()
+            ->assertSee(route('collection'), false)
+            ->assertSee('Voir toute la collection');
+    }
+
     /** Critère 5 + 4 — FAQ affichée + données structurées FAQPage. */
     public function test_la_faq_affiche_les_questions_et_le_json_ld_faqpage(): void
     {

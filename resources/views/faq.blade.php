@@ -60,7 +60,7 @@
                 Choisissez le paiement Mobile Money pour aller vite, ou la conversation WhatsApp
                 pour être conseillée et régler à la livraison.
             </p>
-            <a href="{{ route('home') }}#collection"
+            <a href="{{ route('collection') }}"
                class="mt-5 inline-flex items-center rounded-full bg-bj-cream px-6 py-3 text-xs font-medium uppercase tracking-widest text-bj-navy transition hover:bg-white">
                 Découvrir la collection
             </a>

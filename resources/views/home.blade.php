@@ -3,9 +3,8 @@
 @section('title', 'Blac Joyaux — Maroquinerie ivoirienne | Collection Joyau de Bla')
 
 @php
-    // Photos placeholder libres de droits (Unsplash), stockées en local dans public/images/site.
+    // Visuels de décor (hero, héritage) : placeholders Unsplash locaux dans public/images/site.
     // À remplacer par les visuels définitifs de la créa.
-    $allProducts = collect([$featured])->filter()->merge($others);
 @endphp
 
 @section('content')
@@ -26,7 +25,7 @@
                     La collection Joyau de Bla, inspirée de la poupée de fécondité ashanti. Des sacs à main
                     d'exception, fabriqués en Côte d'Ivoire, pour la femme qui porte son histoire avec allure.
                 </p>
-                <a href="#collection"
+                <a href="#creations"
                    class="mt-9 inline-flex items-center rounded-full bg-bj-cream px-8 py-4 text-xs font-medium uppercase tracking-widest text-bj-navy transition hover:bg-white">
                     Découvrir la collection
                 </a>
@@ -52,31 +51,27 @@
         </div>
     </section>
 
-    {{-- ========================= NOS CRÉATIONS (GRILLE) ========================= --}}
-    <section id="collection" class="mx-auto max-w-6xl px-6 pt-20">
+    {{-- ========================= NOS CRÉATIONS (SÉLECTION) ========================= --}}
+    <section id="creations" class="mx-auto max-w-6xl px-6 pt-20">
         <div class="text-center">
             <p class="text-xs font-medium uppercase tracking-[0.3em] text-bj-gold">Nos créations</p>
             <h2 class="mt-3 font-display text-4xl font-semibold text-bj-navy">La collection</h2>
             <p class="mx-auto mt-3 max-w-md text-sm leading-relaxed text-bj-ink/70">
-                Des pièces essentielles, façonnées avec soin, à porter au quotidien comme aux grands jours.
+                Une sélection de nos pièces phares — découvrez l'ensemble du catalogue en boutique.
             </p>
         </div>
 
         <div class="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 lg:grid-cols-3">
-            @foreach ($allProducts as $product)
-                <a href="{{ route('products.show', $product) }}" class="group block">
-                    <div class="relative aspect-[4/5] overflow-hidden rounded-2xl">
-                        <x-product-image :product="$product" size="card" />
-                        <span class="absolute left-3 top-3 z-10 rounded-full bg-bj-cream/90 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-bj-navy">
-                            Joyau de Bla
-                        </span>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <h3 class="font-display text-lg font-semibold text-bj-navy transition group-hover:text-bj-gold">{{ $product->name }}</h3>
-                        <p class="mt-1 text-sm tracking-wide text-bj-ink/70">{{ $product->formatted_price }}</p>
-                    </div>
-                </a>
+            @foreach ($highlights as $product)
+                @include('partials.collection-card', ['product' => $product])
             @endforeach
+        </div>
+
+        <div class="mt-12 text-center">
+            <a href="{{ route('collection') }}"
+               class="inline-flex items-center rounded-full bg-bj-navy px-8 py-4 text-xs font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">
+                Voir toute la collection
+            </a>
         </div>
     </section>
 
@@ -130,7 +125,7 @@
         <p class="mx-auto mt-4 max-w-md text-sm leading-relaxed text-bj-ink/70">
             Découvrez la collection Joyau de Bla et trouvez la pièce qui vous ressemble.
         </p>
-        <a href="#collection"
+        <a href="{{ route('collection') }}"
            class="mt-8 inline-flex items-center rounded-full bg-bj-navy px-8 py-4 text-xs font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">
             Voir la collection
         </a>

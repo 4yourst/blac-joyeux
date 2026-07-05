@@ -108,7 +108,7 @@
         </div>
 
         <div class="mt-12 text-center">
-            <a href="{{ route('home') }}#collection"
+            <a href="{{ route('collection') }}"
                class="inline-flex items-center rounded-full bg-bj-navy px-8 py-4 text-xs font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-navy-soft">
                 Découvrir la collection
             </a>

@@ -7,19 +7,27 @@ use App\Models\Product;
 class HomeController extends Controller
 {
     /**
-     * Page d'accueil / vitrine : mise en avant de la collection capsule
-     * avec un focus sur le sac de bureau (doc §10.1).
+     * Accueil éditorial : best-seller mis en avant + sélection restreinte de coups
+     * de cœur, renvoyant vers la page Collection pour le catalogue complet.
      */
     public function index()
     {
         $products = Product::where('is_available', true)->get();
 
-        // Le sac de bureau est la pièce mise en avant (doc §10.1).
+        // Le sac de bureau est la pièce phare / best-seller.
         $featured = $products->firstWhere('slug', 'joyau-de-bla-sac-de-bureau') ?? $products->first();
 
-        // Les autres modèles de la collection capsule.
-        $others = $products->reject(fn ($product) => $featured && $product->is($featured))->values();
+        $others = $products->reject(fn ($product) => $featured && $product->is($featured));
 
-        return view('home', compact('featured', 'others'));
+        // Sélection curated de coups de cœur (ordre privilégié), complétée si besoin.
+        $curated = ['joyau-de-bla-tote-ashanti', 'collection-do-cartable-executif', 'joyau-de-bla-pochette'];
+
+        $highlights = $others->whereIn('slug', $curated)
+            ->merge($others->whereNotIn('slug', $curated))
+            ->unique('id')
+            ->take(3)
+            ->values();
+
+        return view('home', compact('featured', 'highlights'));
     }
 }
