@@ -1,59 +1,148 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Blac Joyaux — Prototype e-commerce
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Prototype de plateforme e-commerce **mobile-first** pour **Blac Joyaux**, maison de maroquinerie ivoirienne
+(collection *Joyau de Bla*). Le parcours est pensé pour le **Social Commerce** : découverte → panier →
+**double voie de conversion** (paiement Mobile Money simulé **ou** finalisation sur WhatsApp).
 
-## About Laravel
+> Projet pédagogique — développé en local. Les visuels fournis sont des **placeholders** (Unsplash, libres d'usage)
+> ou les vrais visuels de la marque, en attendant l'intégration définitive de la création.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🧱 Stack technique
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Couche | Technologie |
+|---|---|
+| Back-end | **Laravel 12** (PHP 8.2+), architecture MVC |
+| Vues | **Blade** |
+| Front | **Tailwind CSS v4** (via Vite), JavaScript léger (sans framework) |
+| Base de données | **SQLite** (fichier unique, sans serveur) |
+| Authentification admin | **Laravel Breeze** (inscription publique désactivée) |
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## ✅ Prérequis
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **PHP ≥ 8.2** (avec l'extension `pdo_sqlite`)
+- **Composer**
+- **Node.js** + **npm**
+- **Git**
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Installation
 
-### Premium Partners
+```bash
+# 1. Récupérer le code
+git clone https://github.com/4yourst/blac-joyeux.git
+cd blac-joyeux
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# 2. Dépendances PHP et front
+composer install
+npm install
 
-## Contributing
+# 3. Environnement + clé d'application
+cp .env.example .env
+php artisan key:generate
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 4. Base SQLite
+#    (Windows PowerShell : New-Item -ItemType File database/database.sqlite)
+touch database/database.sqlite
 
-## Code of Conduct
+# 5. Migrations + données de démonstration
+php artisan migrate --seed
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 6. Compilation des assets
+npm run build        # ou : npm run dev  (rechargement à chaud en développement)
 
-## Security Vulnerabilities
+# 7. Lancer le serveur
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Le site est accessible sur **http://localhost:8000** (idéalement en vue mobile).
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ⚙️ Configuration
+
+Dans `.env` :
+
+```dotenv
+APP_LOCALE=fr
+
+# Base de données
+DB_CONNECTION=sqlite
+
+# Numéro WhatsApp de la marque — format international SANS le « + »
+BLAC_WHATSAPP_NUMBER=2250708771557
+```
+
+Le numéro WhatsApp alimente **tout le site** (bouton flottant, footer, page Contact,
+voie de conversion WhatsApp, confirmation de commande). Après modification :
+
+```bash
+php artisan config:clear
+```
+
+---
+
+## 👤 Données de démonstration (après `migrate --seed`)
+
+| Élément | Valeur |
+|---|---|
+| **Admin** (back-office `/admin`) | `admin@blacjoyaux.ci` / `password` |
+| Catalogue | 12 produits (collections *Joyau de Bla* & *Collection DO*) |
+| Livraisons | Abidjan (1–2 j) + intérieur (3 j) |
+| Paiements | Wave, Orange Money, MTN, Moov, espèces |
+| Code promo actif | **`BLAC30`** (−30 %, valable quelques jours) |
+
+---
+
+## 🗺️ Principales fonctionnalités
+
+- **Accueil éditorial** : hero **carrousel** (auto + swipe), réassurance, sélection, héritage, CTA.
+- **Page Collection** : listing complet + **recherche** et **filtres** (type, collection).
+- **Fiche produit** : **galerie multi-images** (miniatures cliquables), storytelling, **SEO** (JSON-LD).
+- **Panier** (session) → **finalisation** (coordonnées, e-mail facultatif, livraison, **code promo**).
+- **Double conversion** : Mobile Money **simulé** (aucune transaction réelle) ou **WhatsApp**.
+- **Confirmation enrichie** : délai de livraison estimé selon la zone, prochaines étapes.
+- **Codes promo** + **bannière compte à rebours** (basée sur la vraie date de fin).
+- **Pages** : Notre histoire, Contact (**Google Maps** + formulaire), Livraison & Paiement, FAQ, 404.
+- **Back-office** `/admin` : tableau de bord, CRUD produits / livraisons / codes promo, consultation des commandes.
+
+---
+
+## 🖼️ Galerie produit (dossiers d'images)
+
+Chaque produit affiche plusieurs vues, lues automatiquement depuis un dossier de convention :
+
+```
+public/images/products/catalog-01/   →  1er produit affiché sur la page Collection
+public/images/products/catalog-02/   →  2e produit…
+…
+public/images/products/catalog-12/   →  12e produit
+```
+
+- Le dossier associé suit **l'ordre d'affichage de la page Collection** (produits triés par nom).
+- Formats acceptés : `.jpg`, `.jpeg`, `.png`, `.webp` ; nombre d'images libre.
+- La **1re image** du dossier sert de vignette (cartes, panier, admin).
+- Logique centralisée dans `app/Support/ProductGallery.php`.
+
+---
+
+## 🧪 Tests
+
+```bash
+php artisan test
+```
+
+Suite de recettage automatisée (parcours vitrine, panier, double conversion, admin, codes promo).
+Les tests s'exécutent sur une base **SQLite en mémoire** — la base de développement n'est pas affectée.
+
+---
+
+## 📦 Notes
+
+- `database/database.sqlite` et le dossier `node_modules/` ne sont pas versionnés.
+- Les visuels lourds pourront être optimisés (redimension + WebP) pour la mise en production.
+- À ce stade (prototype), l'application s'exécute en **local** et n'est pas déployée.

@@ -41,7 +41,7 @@
 @section('content')
 
     <div class="mx-auto max-w-3xl px-5 pt-6">
-        <a href="{{ route('home') }}" class="text-xs font-medium uppercase tracking-widest text-bj-ink/60 transition hover:text-bj-navy">
+        <a href="{{ route('collection') }}" class="text-xs font-medium uppercase tracking-widest text-bj-ink/60 transition hover:text-bj-navy">
             &larr; Retour à la collection
         </a>
     </div>
