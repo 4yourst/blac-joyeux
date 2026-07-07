@@ -24,7 +24,7 @@
     {{-- La fondatrice --}}
     <section class="mx-auto mt-20 max-w-5xl px-5">
         <div class="grid items-center gap-10 sm:grid-cols-2">
-            <x-lifestyle-image ratio="aspect-[4/5]" label="Portrait — Manuela Kouadio" />
+            <x-lifestyle-image ratio="aspect-[4/5]" label="Portrait — Manuela Kouadio" image="images/site/manuela-kouadio.jpg" />
             <div>
                 <p class="text-xs font-medium uppercase tracking-[0.3em] text-bj-gold">La fondatrice</p>
                 <h2 class="mt-3 font-display text-3xl font-semibold text-bj-navy">Manuela Kouadio</h2>
@@ -124,7 +124,7 @@
                     Nous écrire sur WhatsApp
                 </a>
             </div>
-            <x-lifestyle-image ratio="aspect-[4/5]" label="Le showroom — Cocody Palmeraie" />
+            <x-lifestyle-image ratio="aspect-[4/5]" label="Le showroom — Cocody Palmeraie" image="images/site/showroom.jpg" />
         </div>
     </section>
 

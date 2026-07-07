@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use App\Models\User;
+use App\Support\ProductGallery;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,5 +31,18 @@ class DatabaseSeeder extends Seeder
             PaymentMethodSeeder::class,
             PromoCodeSeeder::class,
         ]);
+
+        // Chaque produit prend comme visuel la couverture de son dossier catalog-NN,
+        // afin que vignettes panier/admin et SEO utilisent les vraies photos.
+        $this->assignCatalogCovers();
+    }
+
+    private function assignCatalogCovers(): void
+    {
+        foreach (Product::all() as $product) {
+            if ($cover = ProductGallery::coverPath($product)) {
+                $product->update(['image' => $cover]);
+            }
+        }
     }
 }

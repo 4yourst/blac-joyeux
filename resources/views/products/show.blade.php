@@ -48,12 +48,53 @@
 
     <article class="mx-auto max-w-3xl px-5 pt-6">
 
-        {{-- Visuel --}}
-        <div class="overflow-hidden rounded-3xl border border-bj-border bg-bj-sand">
-            <div class="aspect-[4/5] sm:aspect-[16/10]">
-                <x-product-image :product="$product" size="hero" :eager="true" />
+        {{-- Galerie --}}
+        @if (! empty($gallery))
+            <div>
+                <div class="overflow-hidden rounded-3xl border border-bj-border bg-bj-sand">
+                    <div class="aspect-[4/5] sm:aspect-[16/10]">
+                        <img id="galleryMain" src="{{ $gallery[0] }}" alt="{{ $product->name }}" fetchpriority="high"
+                             class="h-full w-full object-cover transition-opacity duration-300">
+                    </div>
+                </div>
+                @if (count($gallery) > 1)
+                    <div class="mt-3 grid grid-cols-4 gap-3">
+                        @foreach ($gallery as $i => $img)
+                            <button type="button" data-gallery-thumb data-full="{{ $img }}"
+                                    aria-label="Voir la vue {{ $i + 1 }}"
+                                    class="aspect-square overflow-hidden rounded-xl border-2 bg-bj-sand transition {{ $i === 0 ? 'border-bj-navy' : 'border-transparent hover:border-bj-navy/40' }}">
+                                <img src="{{ $img }}" alt="{{ $product->name }} — vue {{ $i + 1 }}" loading="lazy" class="h-full w-full object-cover">
+                            </button>
+                        @endforeach
+                    </div>
+                @endif
             </div>
-        </div>
+
+            @push('scripts')
+            <script>
+                (function () {
+                    const main = document.getElementById('galleryMain');
+                    const thumbs = document.querySelectorAll('[data-gallery-thumb]');
+                    if (!main || !thumbs.length) return;
+                    thumbs.forEach((thumb) => {
+                        thumb.addEventListener('click', () => {
+                            if (main.src === thumb.dataset.full) return;
+                            main.style.opacity = '0';
+                            setTimeout(() => { main.src = thumb.dataset.full; main.style.opacity = '1'; }, 150);
+                            thumbs.forEach((t) => t.classList.replace('border-bj-navy', 'border-transparent'));
+                            thumb.classList.replace('border-transparent', 'border-bj-navy');
+                        });
+                    });
+                })();
+            </script>
+            @endpush
+        @else
+            <div class="overflow-hidden rounded-3xl border border-bj-border bg-bj-sand">
+                <div class="aspect-[4/5] sm:aspect-[16/10]">
+                    <x-product-image :product="$product" size="hero" :eager="true" />
+                </div>
+            </div>
+        @endif
 
         {{-- En-tête produit --}}
         <header class="mt-8">
@@ -138,9 +179,9 @@
         @if ($suggestions->isNotEmpty())
             <section class="mt-14">
                 <h2 class="font-display text-2xl font-semibold text-bj-navy">À découvrir aussi</h2>
-                <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div class="mt-6 grid grid-cols-2 gap-x-5 gap-y-8">
                     @foreach ($suggestions as $suggestion)
-                        @include('partials.product-card', ['product' => $suggestion])
+                        @include('partials.collection-card', ['product' => $suggestion])
                     @endforeach
                 </div>
             </section>

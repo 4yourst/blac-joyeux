@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Support\ProductGallery;
 
 class ProductController extends Controller
 {
@@ -18,6 +19,10 @@ class ProductController extends Controller
             ->take(2)
             ->get();
 
-        return view('products.show', compact('product', 'suggestions'));
+        return view('products.show', [
+            'product' => $product,
+            'suggestions' => $suggestions,
+            'gallery' => ProductGallery::forProduct($product),
+        ]);
     }
 }

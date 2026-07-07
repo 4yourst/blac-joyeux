@@ -1,7 +1,13 @@
 {{-- Carte produit premium (accueil + page Collection). Attend $product. --}}
+@php($cover = \App\Support\ProductGallery::cover($product))
 <a href="{{ route('products.show', $product) }}" class="group block">
-    <div class="relative aspect-[4/5] overflow-hidden rounded-2xl">
-        <x-product-image :product="$product" size="card" />
+    <div class="relative aspect-[4/5] overflow-hidden rounded-2xl bg-bj-sand">
+        @if ($cover)
+            <img src="{{ $cover }}" alt="{{ $product->name }}" loading="lazy"
+                 class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+        @else
+            <x-product-image :product="$product" size="card" />
+        @endif
         <span class="absolute left-3 top-3 z-10 rounded-full bg-bj-cream/90 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-bj-navy">
             {{ $product->collection }}
         </span>

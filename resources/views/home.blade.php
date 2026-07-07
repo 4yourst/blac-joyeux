@@ -97,7 +97,13 @@
         <section class="mx-auto mt-24 max-w-6xl px-6">
             <div class="grid items-stretch overflow-hidden rounded-3xl border border-bj-border bg-white shadow-sm lg:grid-cols-2">
                 <div class="relative min-h-72 lg:min-h-[32rem]">
-                    <x-product-image :product="$featured" size="hero" />
+                    @php($featuredCover = \App\Support\ProductGallery::cover($featured))
+                    @if ($featuredCover)
+                        <img src="{{ $featuredCover }}" alt="{{ $featured->name }}" loading="lazy"
+                             class="absolute inset-0 h-full w-full object-cover">
+                    @else
+                        <x-product-image :product="$featured" size="hero" />
+                    @endif
                 </div>
                 <div class="flex flex-col justify-center p-10 sm:p-14">
                     <p class="text-[11px] font-medium uppercase tracking-[0.3em] text-bj-gold">Pièce phare</p>
@@ -115,23 +121,27 @@
 
     {{-- ========================= HÉRITAGE (SECTION SOMBRE) ========================= --}}
     <section class="mt-24 bg-bj-navy text-bj-cream">
-        <div class="mx-auto grid max-w-6xl items-center gap-0 lg:grid-cols-2">
+        <div class="grid items-stretch gap-0 lg:grid-cols-2">
+            {{-- Image en plein bord gauche (du bord de l'écran jusqu'au centre) --}}
             <div class="relative min-h-72 lg:min-h-[34rem]">
                 <img src="{{ asset('images/site/heritage.jpg') }}" alt="Savoir-faire maroquinier Blac Joyaux" loading="lazy"
                      class="absolute inset-0 h-full w-full object-cover">
             </div>
-            <div class="px-6 py-16 sm:px-12 lg:py-20">
-                <p class="text-xs font-medium uppercase tracking-[0.3em] text-bj-gold-soft">Notre héritage</p>
-                <h2 class="mt-3 font-display text-4xl font-semibold sm:text-5xl">Joyau de Bla</h2>
-                <p class="mt-6 max-w-md text-[15px] leading-relaxed text-bj-cream/80">
-                    Inspirée de la poupée de fécondité ashanti — symbole de vie, de transmission et de beauté —
-                    la collection porte un récit plus grand que l'objet. Chaque sac est un bijou du quotidien,
-                    pensé pour être transmis.
-                </p>
-                <a href="{{ route('about') }}"
-                   class="mt-8 inline-flex items-center rounded-full border border-bj-cream/40 px-8 py-4 text-xs font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-cream hover:text-bj-navy">
-                    Notre histoire
-                </a>
+            {{-- Textes à droite --}}
+            <div class="flex items-center px-6 py-16 sm:px-12 lg:py-20">
+                <div class="w-full max-w-xl lg:pl-4">
+                    <p class="text-xs font-medium uppercase tracking-[0.3em] text-bj-gold-soft">Notre héritage</p>
+                    <h2 class="mt-3 font-display text-4xl font-semibold sm:text-5xl">Joyau de Bla</h2>
+                    <p class="mt-6 text-[15px] leading-relaxed text-bj-cream/80">
+                        Inspirée de la poupée de fécondité ashanti — symbole de vie, de transmission et de beauté —
+                        la collection porte un récit plus grand que l'objet. Chaque sac est un bijou du quotidien,
+                        pensé pour être transmis.
+                    </p>
+                    <a href="{{ route('about') }}"
+                       class="mt-8 inline-flex items-center rounded-full border border-bj-cream/40 px-8 py-4 text-xs font-medium uppercase tracking-widest text-bj-cream transition hover:bg-bj-cream hover:text-bj-navy">
+                        Notre histoire
+                    </a>
+                </div>
             </div>
         </div>
     </section>

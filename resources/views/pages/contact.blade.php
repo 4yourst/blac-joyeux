@@ -48,15 +48,23 @@
                 </a>
             </div>
 
-            {{-- Emplacement de la carte --}}
+            {{-- Carte Google Maps interactive --}}
             <div class="relative min-h-64 overflow-hidden rounded-3xl border border-bj-border bg-bj-sand lg:min-h-full">
-                <div class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-bj-sand to-bj-cream text-bj-navy/60">
-                    <svg class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                <iframe
+                    src="https://maps.google.com/maps?q=Blac%20joyaux%20Maroquinerie%20Abidjan&ll=5.3645357,-3.9606419&z=16&hl=fr&output=embed"
+                    title="Blac Joyaux — showroom Cocody Palmeraie, Abidjan"
+                    class="absolute inset-0 h-full w-full"
+                    style="border:0"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen></iframe>
+                <a href="https://maps.app.goo.gl/bYpE4gQRFAhtiJrM7" target="_blank" rel="noopener"
+                   class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-bj-navy/90 px-4 py-2 text-xs font-medium text-bj-cream shadow-sm backdrop-blur transition hover:bg-bj-navy">
+                    Itinéraire
+                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                     </svg>
-                    <span class="text-[10px] font-medium uppercase tracking-[0.3em]">Carte — Cocody Palmeraie</span>
-                </div>
+                </a>
             </div>
         </div>
     </section>
